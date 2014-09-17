@@ -218,6 +218,8 @@ Bundle 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = "~/.vim/ycm_extra_conf.py"
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>y :YcmDiags<CR>
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+let g:ycm_show_diagnostics_ui = 1
 
 Bundle 'scrooloose/syntastic'
 
@@ -277,4 +279,16 @@ noremap <silent><leader>o :botright copen<CR>
 Bundle 'jlanzarotta/bufexplorer'
 
 nnoremap <silent><F3> :BufExplorerHorizontalSplit<CR>
+
+" tag list
+Bundle 'vim-scripts/taglist.vim'
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Use_SingleClick = 1
+let Tlist_Auto_Open = 0
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Close_On_Select = 1
+let Tlist_Compact_Format = 1
+let Tlist_Use_Right_Window = 1  
+noremap <silent><F4> :TlistToggle<CR>
 
