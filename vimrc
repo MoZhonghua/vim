@@ -4,6 +4,9 @@
 " source .vimrc from any directory you run vim from
 set exrc
 
+" Remove ALL autocommands for the current group.
+autocmd! 
+
 " restrict usage of some commands in non-default .vimrc files; commands that
 " wrote to file or execute shell commands are not allowed and map commands are
 " displayed.
@@ -28,9 +31,11 @@ set clipboard=unnamedplus
 " Ctrl-a to select all 
 noremap <C-a> <ESC>ggVG
 
+set smartcase
+
+" set nohlsearch
 set hlsearch
-
-
+hi Search ctermfg=Yellow ctermbg=NONE cterm=bold,underline
 
 " setup vundle
 set nocompatible              " be iMproved, required
@@ -99,8 +104,8 @@ set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
 " leader settings
-let mapleader = "'"
-let g:mapleader = "'"
+let mapleader = ","
+let g:mapleader = ","
 
 " fswitch
 Bundle 'fswitch'
@@ -133,7 +138,7 @@ nnoremap <Leader>9 :9b<CR>
 
 " close current buffer
 nnoremap <Leader>q :q<CR>
-" nnoremap <Leader>w :bd<CR>
+nnoremap <Leader>w :bd<CR>
 
 " tags
 set tags=./tags;../tags;../../tags;../../../tags;../../../../tags;../../../../../tags
@@ -291,4 +296,39 @@ let Tlist_Close_On_Select = 1
 let Tlist_Compact_Format = 1
 let Tlist_Use_Right_Window = 1  
 noremap <silent><F4> :TlistToggle<CR>
+
+" conque-shell
+Bundle 'oplatek/Conque-Shell'
+noremap <silent><leader>u :ConqueTermSplit bash<CR>
+
+" Power line
+" Bundle 'Lokaltog/vim-powerline'
+set encoding=utf-8
+set laststatus=2
+set t_Co=256
+set fillchars+=stl:\ ,stlnc:\
+" clobber
+" let g:Powerline_symbols = 'unicode' 
+" let g:Powerline_symbols = 'fancy'
+
+Bundle 'bling/vim-airline'
+" airline theme
+Bundle 'paranoida/vim-airlineish'
+let g:airline_theme = 'airlineish'
+
+" move like in bash
+cnoremap <C-a>  <Home>
+cnoremap <C-e>  <End>
+
+" open last buffer
+noremap <C-e> :e#<CR>
+noremap <C-n> :bnext<CR>
+noremap <C-p> :bprev<CR>
+
+noremap <leader>b :CtrlPBuffer<CR>
+
+" show different color in css file
+Bundle 'skammer/vim-css-color'
+
+hi Search ctermfg=Yellow ctermbg=NONE cterm=bold,underline
 
