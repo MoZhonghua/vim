@@ -35,15 +35,11 @@ noremap <C-a> <ESC>ggVG
 
 set smartcase
 
-" set nohlsearch
-set hlsearch
-hi Search ctermfg=Yellow ctermbg=NONE cterm=bold,underline
-
 " setup vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-set rtp+=~/.vim/bundle/vundle/
+" set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
@@ -211,6 +207,7 @@ let g:ctrlp_match_window = 'top'
 " let g:miniBufExplUseSingleClick = 1 " single click to open buffer
 " neend tree on bottom, else it will conflict with vimgdb
 " let g:miniBufExplSplitBelow = 0  
+let g:miniBufExplorerAutoStart = 0
 
 " not work because these keys is intercepted by terminal
 " noremap <C-TAB> :MBEbn<CR>
@@ -332,5 +329,8 @@ noremap <leader>b :CtrlPBuffer<CR>
 " show different color in css file
 " Bundle 'skammer/vim-css-color'
 
+" highlight search configs
+set hlsearch
 hi Search ctermfg=Yellow ctermbg=NONE cterm=bold,underline
+noremap <F12> :set hlsearch! hlsearch?<CR>
 
