@@ -11,6 +11,8 @@ autocmd!
 " wrote to file or execute shell commands are not allowed and map commands are
 " displayed.
 " set secure
+"
+execute pathogen#infect()
 
 syntax on
 colorscheme desert
@@ -45,7 +47,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+" Bundle 'gmarik/vundle'
 
 "my Bundle here:
 "
@@ -68,7 +70,7 @@ Bundle 'gmarik/vundle'
 " Bundle 'scrooloose/nerdcommenter'
 
 " autocomplete for [] () and so on
-Bundle 'Raimondi/delimitMate'
+" Bundle 'Raimondi/delimitMate'
 
 "..................................
 " vim-scripts repos
@@ -76,7 +78,7 @@ Bundle 'Raimondi/delimitMate'
 " Bundle 'vcscommand.vim'
 " Bundle 'ShowPairs'
 " Bundle 'SudoEdit.vim'
-Bundle 'EasyGrep'
+" Bundle 'EasyGrep'
 " Bundle 'VOoM'
 " Bundle 'VimIM'
 "..................................
@@ -108,7 +110,7 @@ let mapleader = ","
 let g:mapleader = ","
 
 " fswitch
-Bundle 'fswitch'
+" Bundle 'fswitch'
 noremap <leader>a <ESC>:FSHere<CR>
 
 " buffer related settings
@@ -164,7 +166,7 @@ noremap <C-L> <C-W>l
 " match ErrorMsg '\%>120v.\+'
 
 " NERDTree
-Bundle 'scrooloose/nerdtree'
+" Bundle 'scrooloose/nerdtree'
 
 nnoremap <silent><F2> :NERDTreeToggle<cr>
 imap <F2> <Esc>:NERDTreeToggle<cr>
@@ -185,7 +187,7 @@ let NERDTreeWinPos = 'right'
 let NERDTreeWinSize = 31
 
 " CtrlP for file searching
-Bundle 'kien/ctrlp.vim'
+" Bundle 'kien/ctrlp.vim'
 let g:ctrlp_map = '<c-f>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = {
@@ -217,7 +219,7 @@ let g:ctrlp_match_window = 'top'
 " noremap <C-PageUp> :MBEbp<CR>
 
 " YouCompleteMe settings
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 
 " loading extra configs for YCM
 let g:ycm_global_ycm_extra_conf = "~/.vim/ycm_extra_conf.py"
@@ -226,21 +228,21 @@ nnoremap <leader>y :YcmDiags<CR>
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 let g:ycm_show_diagnostics_ui = 1
 
-Bundle 'scrooloose/syntastic'
+" Bundle 'scrooloose/syntastic'
 
-Bundle 'tpope/vim-fugitive.git'
+" Bundle 'tpope/vim-fugitive.git'
 
 " vimgdb
 set previewheight=12		" set gdb window initial height
 run macros/gdb_mappings.vim	" source key mappings listed in this document
 set asm=0				" don't show any assembly stuff
 
-Bundle 'vim-maximizer'
+" Bundle 'vim-maximizer'
 nnoremap <silent><leader>x :MaximizerToggle<CR>
 vnoremap <silent><leader>x :MaximizerToggle<CR>gv
 inoremap <silent><leader>x <C-o>:MaximizerToggle<CR>
 
-Bundle 'wesQ3/vim-windowswap'
+" Bundle 'wesQ3/vim-windowswap'
 let g:windowswap_map_keys = 0 "prevent default bindings
 nnoremap <silent> <leader>yw :call WindowSwap#MarkWindowSwap()<CR>
 nnoremap <silent> <leader>pw :call WindowSwap#DoWindowSwap()<CR>
@@ -281,12 +283,12 @@ noremap <silent><leader>p :cprev<CR>
 noremap <silent><leader>o :botright copen<CR>
 
 " buffer explorer
-Bundle 'jlanzarotta/bufexplorer'
+" Bundle 'jlanzarotta/bufexplorer'
 
 nnoremap <silent><F3> :BufExplorerHorizontalSplit<CR>
 
 " tag list
-Bundle 'vim-scripts/taglist.vim'
+" Bundle 'vim-scripts/taglist.vim'
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_SingleClick = 1
@@ -298,7 +300,7 @@ let Tlist_Use_Right_Window = 1
 noremap <silent><F4> :TlistToggle<CR>
 
 " conque-shell
-Bundle 'oplatek/Conque-Shell'
+" Bundle 'oplatek/Conque-Shell'
 noremap <silent><leader>u :ConqueTermSplit bash<CR>
 
 " Power line
@@ -311,9 +313,9 @@ set fillchars+=stl:\ ,stlnc:\
 " let g:Powerline_symbols = 'unicode' 
 " let g:Powerline_symbols = 'fancy'
 
-Bundle 'bling/vim-airline'
+" Bundle 'bling/vim-airline'
 " airline theme
-Bundle 'paranoida/vim-airlineish'
+" Bundle 'paranoida/vim-airlineish'
 let g:airline_theme = 'airlineish'
 
 " move like in bash
@@ -328,7 +330,7 @@ noremap <C-p> :bprev<CR>
 noremap <leader>b :CtrlPBuffer<CR>
 
 " show different color in css file
-Bundle 'skammer/vim-css-color'
+" Bundle 'skammer/vim-css-color'
 
 hi Search ctermfg=Yellow ctermbg=NONE cterm=bold,underline
 
