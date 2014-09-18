@@ -272,13 +272,6 @@ nnoremap <silent><leader>t  :cscope find t <C-r>=expand("<cword>")<CR><CR>
 nnoremap <silent><leader>c  :scscope find c <C-r>=expand("<cword>")<CR><CR>
 nnoremap <silent><leader>vc :vert scscope find c <C-r>=expand("<cword>")<CR><CR>
 
-if has('quickfix') 
-	set cscopequickfix=s-,c-,d-,i-,t-,e- 
-endif
-noremap <silent><leader>n :cnext<CR>
-noremap <silent><leader>p :cprev<CR>
-noremap <silent><leader>o :botright copen<CR>
-
 " buffer explorer
 " Bundle 'jlanzarotta/bufexplorer'
 
@@ -333,4 +326,42 @@ noremap <leader>b :CtrlPBuffer<CR>
 set hlsearch
 hi Search ctermfg=Yellow ctermbg=NONE cterm=bold,underline
 noremap <F12> :set hlsearch! hlsearch?<CR>
+
+" toggle quick fix window
+if has('quickfix') 
+	set cscopequickfix=s-,c-,d-,i-,t-,e- 
+endif
+noremap <silent><leader>n :cnext<CR>
+noremap <silent><leader>p :cprev<CR>
+" noremap <silent><leader>o :botright copen<CR>
+
+function! GetBufferList()
+	redir =>buflist
+	silent! ls
+	redir END
+	return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+	let buflist = GetBufferList()
+	for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+		if bufwinnr(bufnum) != -1
+			exec(a:pfx.'close')
+			return
+		endif
+	endfor
+	if a:pfx == 'l' && len(getloclist(0)) == 0
+		echohl ErrorMsg
+		echo "Location List is Empty."
+		return
+	endif
+	let winnr = winnr()
+	exec('botright '.a:pfx.'open')
+	if winnr() != winnr
+		wincmd p
+	endif
+endfunction
+
+nnoremap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
+nnoremap <silent> <leader>o :call ToggleList("Quickfix List", 'c')<CR>
 
