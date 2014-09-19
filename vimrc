@@ -165,7 +165,7 @@ noremap <C-L> <C-W>l
 " NERDTree
 " Bundle 'scrooloose/nerdtree'
 
-nnoremap <silent><F2> :NERDTreeToggle<cr>
+nnoremap <F2> :NERDTreeToggle<cr>
 imap <F2> <Esc>:NERDTreeToggle<cr>
 
 " auto open NERDTree when start
@@ -236,21 +236,21 @@ run macros/gdb_mappings.vim	" source key mappings listed in this document
 set asm=0				" don't show any assembly stuff
 
 " Bundle 'vim-maximizer'
-nnoremap <silent><leader>x :MaximizerToggle<CR>
-vnoremap <silent><leader>x :MaximizerToggle<CR>gv
+nnoremap <leader>x :MaximizerToggle<CR>
+vnoremap <leader>x :MaximizerToggle<CR>gv
 " since we use space as leader key, so we should not create any
 " mapping in insert mode
-" inoremap <silent><leader>x <C-o>:MaximizerToggle<CR>
+" inoremap <leader>x <C-o>:MaximizerToggle<CR>
 
 " Bundle 'wesQ3/vim-windowswap'
 let g:windowswap_map_keys = 0 "prevent default bindings
-nnoremap <silent> <leader>Wy :call WindowSwap#MarkWindowSwap()<CR>
-nnoremap <silent> <leader>Wp :call WindowSwap#DoWindowSwap()<CR>
+nnoremap  <leader>Wy :call WindowSwap#MarkWindowSwap()<CR>
+nnoremap  <leader>Wp :call WindowSwap#DoWindowSwap()<CR>
 
 " increase the window size by a factor of 1.5 and decrease the 
 " window size by 0.67, you can map this
-nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap  <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap  <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " cscope settings copied from help
 if has("cscope")
@@ -269,15 +269,15 @@ if has("cscope")
 endif
 
 " cscope key maps
-nnoremap <silent><leader>r  :cscope find c <C-r>=expand("<cword>")<CR><CR>
-nnoremap <silent><leader>t  :cscope find t <C-r>=expand("<cword>")<CR><CR>
-nnoremap <silent><leader>c  :scscope find c <C-r>=expand("<cword>")<CR><CR>
-nnoremap <silent><leader>vc :vert scscope find c <C-r>=expand("<cword>")<CR><CR>
+nnoremap <leader>r  :cscope find c <C-r>=expand("<cword>")<CR><CR>
+nnoremap <leader>t  :cscope find t <C-r>=expand("<cword>")<CR><CR>
+nnoremap <leader>c  :scscope find c <C-r>=expand("<cword>")<CR><CR>
+nnoremap <leader>vc :vert scscope find c <C-r>=expand("<cword>")<CR><CR>
 
 " buffer explorer
 " Bundle 'jlanzarotta/bufexplorer'
 
-nnoremap <silent><F3> :BufExplorerHorizontalSplit<CR>
+nnoremap <F3> :BufExplorerHorizontalSplit<CR>
 
 " tag list
 " Bundle 'vim-scripts/taglist.vim'
@@ -289,11 +289,11 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 1
 let Tlist_Compact_Format = 1
 let Tlist_Use_Right_Window = 0  
-noremap <silent><F4> :TlistToggle<CR>
+noremap <F4> :TlistToggle<CR>
 
 " conque-shell
 " Bundle 'oplatek/Conque-Shell'
-noremap <silent><leader>u :ConqueTermSplit bash<CR>
+noremap <leader>u :ConqueTermSplit bash<CR>
 
 " Power line
 " Bundle 'Lokaltog/vim-powerline'
@@ -333,9 +333,9 @@ noremap <leader>h :set hlsearch! hlsearch?<CR>
 if has('quickfix') 
 	set cscopequickfix=s-,c-,d-,i-,t-,e- 
 endif
-noremap <silent><leader>n :cnext<CR>
-noremap <silent><leader>p :cprev<CR>
-" noremap <silent><leader>o :botright copen<CR>
+noremap <leader>n :cnext<CR>
+noremap <leader>p :cprev<CR>
+" noremap <leader>o :botright copen<CR>
 
 function! GetBufferList()
 	redir =>buflist
@@ -364,8 +364,8 @@ function! ToggleList(bufname, pfx)
 	endif
 endfunction
 
-nnoremap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
-nnoremap <silent> <leader>o :call ToggleList("Quickfix List", 'c')<CR>
+nnoremap  <leader>l :call ToggleList("Location List", 'l')<CR>
+nnoremap  <leader>o :call ToggleList("Quickfix List", 'c')<CR>
 
 " make vim do not indent pasted text
 " you should only disable it temporarily when paste large text
@@ -404,23 +404,43 @@ noremap <leader>rc :e ~/.vimrc<CR>
 " noremap ; :
 
 " disable arrow key in vim, so you must move in vim-way
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+" map <up> <nop>
+" map <down> <nop>
+" map <left> <nop>
+" map <right> <nop>
 
 " move in very long line
 nnoremap j gj
 nnoremap k gk
 
-
 " YankRing
 " Bundle 'vim-scripts/YankRing.vim'
 nnoremap <F12> :YRShow<CR>
+" we use ctrl-p / ctrl-n to swith between buffer
+let g:yankring_replace_n_pkey = ''
+let g:yankring_replace_n_nkey = ''
 
 " bufkill: kill buffer without closing window 
 " Bundle 'vim-scripts/bufkill.vim'
 
-set imdisable
-inoremap <ESC> <ESC>:set iminsert=0<CR>
+" set imdisable
+" inoremap <ESC> <ESC>:set iminsert=0<CR>
+
+" VimIM
+" Bundle 'vim-scripts/VimIM'
+" let g:vimim_cloud = 'google,sogou,baidu,qq'   
+" let g:vimim_map = 'tab_as_gi'   
+" let g:vimim_mode = 'dynamic'   
+" let g:vimim_mycloud = 0   
+" let g:vimim_plugin = 'C:/var/mobile/vim/vimfiles/plugin'   
+" let g:vimim_punctuation = 2   
+" let g:vimim_shuangpin = 0   
+" let g:vimim_toggle = 'pinyin,google,sogou' 
+
+" see http://vimim.googlecode.com/svn/vimim/vimim.html
+let g:vimim_cloud = 'baidu'   
+
+" ctrl-\ to toggle input method
+" or ctrl-_, both are ok
+let g:vimim_map='c-bslash'
 
