@@ -238,7 +238,9 @@ set asm=0				" don't show any assembly stuff
 " Bundle 'vim-maximizer'
 nnoremap <silent><leader>x :MaximizerToggle<CR>
 vnoremap <silent><leader>x :MaximizerToggle<CR>gv
-inoremap <silent><leader>x <C-o>:MaximizerToggle<CR>
+" since we use space as leader key, so we should not create any
+" mapping in insert mode
+" inoremap <silent><leader>x <C-o>:MaximizerToggle<CR>
 
 " Bundle 'wesQ3/vim-windowswap'
 let g:windowswap_map_keys = 0 "prevent default bindings
@@ -302,13 +304,15 @@ set fillchars+=stl:\ ,stlnc:\
 " clobber
 " let g:Powerline_symbols = 'unicode' 
 " let g:Powerline_symbols = 'fancy'
-
+"
 " Bundle 'bling/vim-airline'
 " airline theme
 " Bundle 'paranoida/vim-airlineish'
 let g:airline_theme = 'airlineish'
 
-" move like in bash
+" move like bash in command mode
+" C-w delete last work
+" C-u delete whole  line
 cnoremap <C-a>  <Home>
 cnoremap <C-e>  <End>
 
@@ -416,4 +420,7 @@ nnoremap <F12> :YRShow<CR>
 
 " bufkill: kill buffer without closing window 
 " Bundle 'vim-scripts/bufkill.vim'
+
+set imdisable
+inoremap <ESC> <ESC>:set iminsert=0<CR>
 
