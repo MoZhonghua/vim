@@ -136,6 +136,7 @@ nnoremap <Leader>9 :9b<CR>
 
 " close current buffer
 nnoremap <Leader>q :q<CR>
+nnoremap <leader>d :BD<CR>
 nnoremap <Leader>w :w<CR>
 
 " tags
@@ -363,7 +364,9 @@ nnoremap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 nnoremap <silent> <leader>o :call ToggleList("Quickfix List", 'c')<CR>
 
 " make vim do not indent pasted text
-set paste	
+" you should only disable it temporarily when paste large text
+" else auto-indent function will not work
+set nopaste	
 
 " expand %% to %:h in command mode
 " not work, some configs conflicts with this, but I don't know which 
@@ -410,4 +413,7 @@ nnoremap k gk
 " YankRing
 " Bundle 'vim-scripts/YankRing.vim'
 nnoremap <F12> :YRShow<CR>
+
+" bufkill: kill buffer without closing window 
+" Bundle 'vim-scripts/bufkill.vim'
 
