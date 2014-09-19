@@ -362,3 +362,6 @@ endfunction
 nnoremap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 nnoremap <silent> <leader>o :call ToggleList("Quickfix List", 'c')<CR>
 
+" make vim dont indent pasted text
+set paste	
+
