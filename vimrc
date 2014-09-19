@@ -369,3 +369,7 @@ set paste
 " not work, some configs conflicts with this, but I don't know which 
 " cnoremap <expr> %% getcmdtype( ) == ':' ? expand('%:h').'/' : '%%'
 
+" fix delay when exit visaul mode
+set timeoutlen=1000 
+set ttimeoutlen=0
+
