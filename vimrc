@@ -322,7 +322,7 @@ noremap <C-p> :bprev<CR>
 " highlight search configs
 set hlsearch
 hi Search ctermfg=Yellow ctermbg=NONE cterm=bold,underline
-noremap <F12> :set hlsearch! hlsearch?<CR>
+noremap <leader>h :set hlsearch! hlsearch?<CR>
 
 " toggle quick fix window
 if has('quickfix') 
@@ -362,7 +362,7 @@ endfunction
 nnoremap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 nnoremap <silent> <leader>o :call ToggleList("Quickfix List", 'c')<CR>
 
-" make vim dont indent pasted text
+" make vim do not indent pasted text
 set paste	
 
 " expand %% to %:h in command mode
@@ -389,4 +389,25 @@ command! -nargs=+ -complete=command TabMessage call TabMessage(<q-args>)
 "  . * [ ]     special meaning but 
 "  [^_a-zA-z0-9] will match literally, such as ( ) { } + | ? 
 set nomagic
+
+" a quick way to edit vimrc 
+noremap <leader>rc :e ~/.vimrc<CR>
+
+" use ; to enter command mode
+" noremap ; :
+
+" disable arrow key in vim, so you must move in vim-way
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" move in very long line
+nnoremap j gj
+nnoremap k gk
+
+
+" YankRing
+" Bundle 'vim-scripts/YankRing.vim'
+nnoremap <F12> :YRShow<CR>
 
