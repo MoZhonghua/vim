@@ -136,8 +136,7 @@ nnoremap <Leader>9 :9b<CR>
 
 " close current buffer
 nnoremap <Leader>q :q<CR>
-nnoremap <Leader>w :w<CR>
-nnoremap <C-s> :w<CR>
+nnoremap <C-S> :w<CR>
 
 " tags
 set tags=./tags;../tags;../../tags;../../../tags;../../../../tags;../../../../../tags
@@ -242,9 +241,8 @@ inoremap <silent><leader>x <C-o>:MaximizerToggle<CR>
 
 " Bundle 'wesQ3/vim-windowswap'
 let g:windowswap_map_keys = 0 "prevent default bindings
-nnoremap <silent> <leader>yw :call WindowSwap#MarkWindowSwap()<CR>
-nnoremap <silent> <leader>pw :call WindowSwap#DoWindowSwap()<CR>
-nnoremap <silent> <leader>ww :call WindowSwap#EasyWindowSwap()<CR>
+nnoremap <silent> <leader>wy :call WindowSwap#MarkWindowSwap()<CR>
+nnoremap <silent> <leader>wp :call WindowSwap#DoWindowSwap()<CR>
 
 " increase the window size by a factor of 1.5 and decrease the 
 " window size by 0.67, you can map this
@@ -317,8 +315,6 @@ cnoremap <C-e>  <End>
 noremap <C-e> :e#<CR>
 noremap <C-n> :bnext<CR>
 noremap <C-p> :bprev<CR>
-
-noremap <leader>b :CtrlPBuffer<CR>
 
 " show different color in css file
 " Bundle 'skammer/vim-css-color'
