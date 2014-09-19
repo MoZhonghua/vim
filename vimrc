@@ -365,3 +365,7 @@ nnoremap <silent> <leader>o :call ToggleList("Quickfix List", 'c')<CR>
 " make vim dont indent pasted text
 set paste	
 
+" expand %% to %:h in command mode
+" not work, some configs conflicts with this, but I don't know which 
+" cnoremap <expr> %% getcmdtype( ) == ':' ? expand('%:h').'/' : '%%'
+
