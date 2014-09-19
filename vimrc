@@ -136,7 +136,7 @@ nnoremap <Leader>9 :9b<CR>
 
 " close current buffer
 nnoremap <Leader>q :q<CR>
-nnoremap <C-S> :w<CR>
+nnoremap <Leader>w :w<CR>
 
 " tags
 set tags=./tags;../tags;../../tags;../../../tags;../../../../tags;../../../../../tags
@@ -241,8 +241,8 @@ inoremap <silent><leader>x <C-o>:MaximizerToggle<CR>
 
 " Bundle 'wesQ3/vim-windowswap'
 let g:windowswap_map_keys = 0 "prevent default bindings
-nnoremap <silent> <leader>wy :call WindowSwap#MarkWindowSwap()<CR>
-nnoremap <silent> <leader>wp :call WindowSwap#DoWindowSwap()<CR>
+nnoremap <silent> <leader>Wy :call WindowSwap#MarkWindowSwap()<CR>
+nnoremap <silent> <leader>Wp :call WindowSwap#DoWindowSwap()<CR>
 
 " increase the window size by a factor of 1.5 and decrease the 
 " window size by 0.67, you can map this
@@ -383,4 +383,10 @@ function! TabMessage(cmd)
   set nomodified
 endfunction
 command! -nargs=+ -complete=command TabMessage call TabMessage(<q-args>)
+
+" use \v for very magic and \V for very nomagic
+" default is magic mode, that is:
+"  . * [ ]     special meaning but 
+"  [^_a-zA-z0-9] will match literally, such as ( ) { } + | ? 
+set nomagic
 
