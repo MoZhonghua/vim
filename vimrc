@@ -102,8 +102,8 @@ set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
 " leader settings
-let mapleader = " "
-let g:mapleader = " "
+let mapleader = ","
+let g:mapleader = ","
 
 " fswitch
 " Bundle 'fswitch'
@@ -118,21 +118,6 @@ set hidden
 "  tell Vim to abandon a buffer but you have unsaved changes, Vim will ask you
 "  whether to save your changes first, abandon them, or cancel the action.
 "  set confirm
-
-" fast way to switch between buffer
-nnoremap <Leader>l :ls<CR>
-nnoremap <Leader>b :bp<CR>
-nnoremap <Leader>f :bn<CR>
-nnoremap <Leader>g :e#<CR>
-nnoremap <Leader>1 :1b<CR>
-nnoremap <Leader>2 :2b<CR>
-nnoremap <Leader>3 :3b<CR>
-nnoremap <Leader>4 :4b<CR>
-nnoremap <Leader>5 :5b<CR>
-nnoremap <Leader>6 :6b<CR>
-nnoremap <Leader>7 :7b<CR>
-nnoremap <Leader>8 :8b<CR>
-nnoremap <Leader>9 :9b<CR>
 
 " close current buffer
 nnoremap <Leader>q :q<CR>
@@ -182,6 +167,7 @@ let NERDTreeIgnore=['\.o$', '\.ko$', '\.symvers$', '\.order$', '\.mod.c$', '\.sw
 let NERDTreeQuitOnOpen=0
 let NERDTreeWinPos = 'right'
 let NERDTreeWinSize = 31
+let NERDTreeShowBookmarks = 1 
 
 " CtrlP for file searching
 " Bundle 'kien/ctrlp.vim'
@@ -316,11 +302,6 @@ let g:airline_theme = 'airlineish'
 cnoremap <C-a>  <Home>
 cnoremap <C-e>  <End>
 
-" open last buffer
-noremap <C-e> :e#<CR>
-noremap <C-n> :bnext<CR>
-noremap <C-p> :bprev<CR>
-
 " show different color in css file
 " Bundle 'skammer/vim-css-color'
 
@@ -443,4 +424,27 @@ let g:vimim_cloud = 'baidu'
 " ctrl-\ to toggle input method
 " or ctrl-_, both are ok
 let g:vimim_map='c-bslash'
+
+" Buffer suf: switch buffer according edit history
+" Vim default bnext/bprevious will jump between buffer according
+" the order of opening buffer
+" Bundle 'ton/vim-bufsurf'
+"
+" nnoremap <Leader>l :ls<CR>
+" nnoremap <Leader>b :bp<CR>
+" nnoremap <Leader>f :bn<CR>
+" nnoremap <Leader>g :e#<CR>
+
+noremap <C-n> :BufSurfBack<CR>
+noremap <C-p> :BufSurfForward<CR>
+
+noremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
 
