@@ -12,7 +12,6 @@ autocmd!
 " displayed.
 " set secure
 "
-execute pathogen#infect()
 
 syntax on
 colorscheme desert
@@ -38,6 +37,13 @@ set smartcase
 " setup vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
+
+" To disable a plugin, add it's bundle name to the following list
+let g:pathogen_disabled = []
+
+" delimitMate is very anoying
+call add(g:pathogen_disabled, 'delimitMate')
+execute pathogen#infect()
 
 " set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -419,7 +425,7 @@ let g:yankring_replace_n_nkey = ''
 " let g:vimim_toggle = 'pinyin,google,sogou' 
 
 " see http://vimim.googlecode.com/svn/vimim/vimim.html
-let g:vimim_cloud = 'baidu'   
+let g:vimim_cloud = 'sogou'   
 
 " ctrl-\ to toggle input method
 " or ctrl-_, both are ok
@@ -447,4 +453,7 @@ nnoremap <Leader>6 :6b<CR>
 nnoremap <Leader>7 :7b<CR>
 nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
+
+" backspace 
+set backspace=indent,eol,start
 
