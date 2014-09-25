@@ -313,6 +313,7 @@ cnoremap <C-e>  <End>
 
 " highlight search configs
 set hlsearch
+set incsearch
 hi Search ctermfg=Yellow ctermbg=NONE cterm=bold,underline
 noremap <leader>h :set hlsearch! hlsearch?<CR>
 
