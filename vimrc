@@ -442,8 +442,8 @@ let g:vimim_map='c-bslash'
 " nnoremap <Leader>f :bn<CR>
 " nnoremap <Leader>g :e#<CR>
 
-noremap <C-n> :BufSurfBack<CR>
-noremap <C-p> :BufSurfForward<CR>
+noremap <C-p> :BufSurfBack<CR>
+noremap <C-n> :BufSurfForward<CR>
 
 noremap <Leader>1 :1b<CR>
 nnoremap <Leader>2 :2b<CR>
@@ -457,4 +457,25 @@ nnoremap <Leader>9 :9b<CR>
 
 " backspace 
 set backspace=indent,eol,start
+
+" vim-scroll-bar
+" Default markers
+let g:scroll_position_marker         = '>'
+let g:scroll_position_visual_begin   = '^'
+let g:scroll_position_visual_middle  = ':'
+let g:scroll_position_visual_end     = 'v'
+let g:scroll_position_visual_overlap = '<>'
+
+" Additional markers disabled by default due to slow rendering
+" let g:scroll_position_jump = '-'
+" let g:scroll_position_change = 'x'
+hi SignColumn                  ctermbg=232
+hi ScrollPositionMarker        ctermfg=208 ctermbg=232
+hi ScrollPositionVisualBegin   ctermfg=196 ctermbg=232
+hi ScrollPositionVisualMiddle  ctermfg=196 ctermbg=232
+hi ScrollPositionVisualEnd     ctermfg=196 ctermbg=232
+hi ScrollPositionVisualOverlap ctermfg=196 ctermbg=232
+hi ScrollPositionChange        ctermfg=124 ctermbg=232
+hi ScrollPositionJump          ctermfg=131 ctermbg=232
+let g:scroll_position_visual = 1
 
