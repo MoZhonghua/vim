@@ -1,6 +1,9 @@
 [submodule "bundle/bufexplorer"]
 	path = bundle/bufexplorer
 	url  = https://github.com/jlanzarotta/bufexplorer.git
+[submodule "bundle/bufkill.vim"]
+	path = bundle/bufkill.vim
+	url  = https://github.com/vim-scripts/bufkill.vim.git
 [submodule "bundle/Conque-Shell"]
 	path = bundle/Conque-Shell
 	url  = https://github.com/oplatek/Conque-Shell.git
@@ -34,6 +37,9 @@
 [submodule "bundle/vim-airlineish"]
 	path = bundle/vim-airlineish
 	url  = https://github.com/paranoida/vim-airlineish.git
+[submodule "bundle/vim-bufsurf"]
+	path = bundle/vim-bufsurf
+	url  = https://github.com/ton/vim-bufsurf.git
 [submodule "bundle/vim-colors-solarized"]
 	path = bundle/vim-colors-solarized
 	url  = https://github.com/altercation/vim-colors-solarized.git
@@ -43,6 +49,9 @@
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url  = https://github.com/tpope/vim-fugitive.git
+[submodule "bundle/VimIM"]
+	path = bundle/VimIM
+	url  = https://github.com/vim-scripts/VimIM.git
 [submodule "bundle/vim-maximizer"]
 	path = bundle/vim-maximizer
 	url  = https://github.com/vim-scripts/vim-maximizer.git
@@ -52,12 +61,18 @@
 [submodule "bundle/vim-powerline"]
 	path = bundle/vim-powerline
 	url  = https://github.com/Lokaltog/vim-powerline.git
+[submodule "bundle/vim-scroll-position"]
+	path = bundle/vim-scroll-position
+	url  = https://github.com/keitheis/vim-scroll-position.git
 [submodule "bundle/vim-windowswap"]
 	path = bundle/vim-windowswap
 	url  = https://github.com/wesQ3/vim-windowswap.git
 [submodule "bundle/vundle"]
 	path = bundle/vundle
 	url  = https://github.com/gmarik/vundle.git
+[submodule "bundle/YankRing.vim"]
+	path = bundle/YankRing.vim
+	url  = https://github.com/vim-scripts/YankRing.vim.git
 [submodule "bundle/YouCompleteMe"]
 	path = bundle/YouCompleteMe
 	url  = https://github.com/Valloric/YouCompleteMe.git
