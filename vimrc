@@ -282,7 +282,7 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_SingleClick = 1
 let Tlist_Auto_Open = 0
 let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Close_On_Select = 1
+let Tlist_Close_On_Select = 0
 let Tlist_Compact_Format = 1
 let Tlist_Use_Right_Window = 0  
 noremap <F2> :TlistToggle<CR>
@@ -319,6 +319,7 @@ cnoremap <C-e>  <End>
 set hlsearch
 set incsearch
 hi Search ctermfg=Yellow ctermbg=NONE cterm=bold,underline
+hi Search guifg=Yellow guibg=NONE gui=bold,underline
 noremap <leader>h :set hlsearch! hlsearch?<CR>
 
 " toggle quick fix window
