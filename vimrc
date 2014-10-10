@@ -43,6 +43,7 @@ let g:pathogen_disabled = []
 
 " delimitMate is very anoying
 call add(g:pathogen_disabled, 'delimitMate')
+call add(g:pathogen_disabled, 'vim-scroll-position')
 execute pathogen#infect()
 
 " set rtp+=~/.vim/bundle/vundle/
@@ -156,8 +157,8 @@ noremap <C-L> <C-W>l
 " NERDTree
 " Bundle 'scrooloose/nerdtree'
 
-nnoremap <F2> :NERDTreeToggle<cr>
-imap <F2> <Esc>:NERDTreeToggle<cr>
+nnoremap <F4> :NERDTreeToggle<cr>
+imap <F4> <Esc>:NERDTreeToggle<cr>
 
 " auto open NERDTree when start
 " autocmd VimEnter * NERDTree
@@ -194,13 +195,16 @@ let g:ctrlp_by_filename = 1
 let g:ctrlp_match_window = 'top'
 
 " Bundle "fholgado/minibufexpl.vim"
-" let g:miniBufExplBuffersNeeded = 0
-" let g:miniBufExplCycleArround = 1
-" let g:miniBufExplMinSize = 1 
-" let g:miniBufExplUseSingleClick = 1 " single click to open buffer
+let g:miniBufExplBuffersNeeded = 0
+let g:miniBufExplCycleArround = 1
+let g:miniBufExplMinSize = 1 
+let g:miniBufExplUseSingleClick = 1 " single click to open buffer
 " neend tree on bottom, else it will conflict with vimgdb
-" let g:miniBufExplSplitBelow = 0  
-let g:miniBufExplorerAutoStart = 0
+let g:miniBufExplSplitBelow = 0  
+let g:miniBufExplorerAutoStart = 1
+
+nnoremap <F3> :MBEToggle<CR>
+inoremap <F3> <ESC>:MBEToggle<CR>
 
 " not work because these keys is intercepted by terminal
 " noremap <C-TAB> :MBEbn<CR>
@@ -269,7 +273,7 @@ nnoremap <leader>vc :vert scscope find c <C-r>=expand("<cword>")<CR><CR>
 " buffer explorer
 " Bundle 'jlanzarotta/bufexplorer'
 
-nnoremap <F3> :BufExplorerHorizontalSplit<CR>
+" nnoremap <F3> :BufExplorerHorizontalSplit<CR>
 
 " tag list
 " Bundle 'vim-scripts/taglist.vim'
@@ -281,7 +285,7 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 1
 let Tlist_Compact_Format = 1
 let Tlist_Use_Right_Window = 0  
-noremap <F4> :TlistToggle<CR>
+noremap <F2> :TlistToggle<CR>
 
 " conque-shell
 " Bundle 'oplatek/Conque-Shell'
@@ -478,4 +482,8 @@ hi ScrollPositionVisualOverlap ctermfg=196 ctermbg=232
 hi ScrollPositionChange        ctermfg=124 ctermbg=232
 hi ScrollPositionJump          ctermfg=131 ctermbg=232
 let g:scroll_position_visual = 1
+
+" F8 to make
+inoremap <F8> <ESC>:make<CR>
+nnoremap <F8> :make<CR>
 
