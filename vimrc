@@ -488,3 +488,6 @@ let g:scroll_position_visual = 1
 inoremap <F8> <ESC>:make<CR>
 nnoremap <F8> :make<CR>
 
+" set font for gvim
+set guifont=Monospace\ 11
+
