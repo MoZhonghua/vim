@@ -97,6 +97,10 @@ function! s:Toggle()
 	nunmap <C-P>
 	nunmap <C-X>
 
+	" restore custom mappings
+	noremap <C-n> :BufSurfForward<CR>
+	noremap <C-p> :BufSurfBack<CR>
+
 	echohl ErrorMsg
 	echo "gdb keys reset to default"
 	echohl None
