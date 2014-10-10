@@ -44,6 +44,7 @@ let g:pathogen_disabled = []
 " delimitMate is very anoying
 call add(g:pathogen_disabled, 'delimitMate')
 call add(g:pathogen_disabled, 'vim-scroll-position')
+call add(g:pathogen_disabled, 'autosession.vim')
 execute pathogen#infect()
 
 " set rtp+=~/.vim/bundle/vundle/
