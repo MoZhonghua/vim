@@ -1,3 +1,6 @@
+[submodule "bundle/autosession.vim"]
+	path = bundle/autosession.vim
+	url  = https://github.com/vim-scripts/autosession.vim.git
 [submodule "bundle/bufexplorer"]
 	path = bundle/bufexplorer
 	url  = https://github.com/jlanzarotta/bufexplorer.git
