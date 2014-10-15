@@ -45,6 +45,7 @@ let g:pathogen_disabled = []
 call add(g:pathogen_disabled, 'delimitMate')
 call add(g:pathogen_disabled, 'vim-scroll-position')
 call add(g:pathogen_disabled, 'autosession.vim')
+call add(g:pathogen_disabled, 'VimIM')
 execute pathogen#infect()
 
 " set rtp+=~/.vim/bundle/vundle/
@@ -160,6 +161,7 @@ noremap <C-L> <C-W>l
 
 nnoremap <F4> :NERDTreeToggle<cr>
 imap <F4> <Esc>:NERDTreeToggle<cr>
+noremap <leader>c :NERDTreeFind<cr>
 
 " auto open NERDTree when start
 " autocmd VimEnter * NERDTree
@@ -218,7 +220,7 @@ inoremap <F3> <ESC>:MBEToggle<CR>
 
 " loading extra configs for YCM
 let g:ycm_global_ycm_extra_conf = "~/.vim/ycm_extra_conf.py"
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <silent><leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>y :YcmDiags<CR>
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 let g:ycm_show_diagnostics_ui = 1
@@ -268,8 +270,8 @@ endif
 " cscope key maps
 nnoremap <leader>r  :cscope find c <C-r>=expand("<cword>")<CR><CR>
 nnoremap <leader>t  :cscope find t <C-r>=expand("<cword>")<CR><CR>
-nnoremap <leader>c  :scscope find c <C-r>=expand("<cword>")<CR><CR>
-nnoremap <leader>vc :vert scscope find c <C-r>=expand("<cword>")<CR><CR>
+" nnoremap <leader>c  :scscope find c <C-r>=expand("<cword>")<CR><CR>
+" nnoremap <leader>vc :vert scscope find c <C-r>=expand("<cword>")<CR><CR>
 
 " buffer explorer
 " Bundle 'jlanzarotta/bufexplorer'
