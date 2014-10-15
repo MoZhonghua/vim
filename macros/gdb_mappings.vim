@@ -9,14 +9,14 @@ endif
 let s:gdb_k = 1
 function! ToggleGDB()
     if getwinvar(0,'&statusline') != ""
-        :set autochdir
-        :cd %:p:h
+        " :set autochdir
+        " :cd %:p:h
         :only
-        set statusline=
+        " set statusline=
         :call <SID>Toggle()
     else
-        set statusline+=%F%m%r%h%w\ [POS=%04l,%04v]\ [%p%%]\ [LEN=%L]\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
-        :set noautochdir
+        " set statusline+=%F%m%r%h%w\ [POS=%04l,%04v]\ [%p%%]\ [LEN=%L]\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
+        " :set noautochdir
         :call <SID>Toggle()
     endif
 endfunction
