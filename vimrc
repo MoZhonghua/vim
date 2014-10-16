@@ -230,9 +230,11 @@ let g:ycm_show_diagnostics_ui = 1
 " Bundle 'tpope/vim-fugitive.git'
 
 " vimgdb
-set previewheight=12		" set gdb window initial height
-run macros/gdb_mappings.vim	" source key mappings listed in this document
-set asm=0				" don't show any assembly stuff
+if has("gdb")
+	set previewheight=12		" set gdb window initial height
+	run macros/gdb_mappings.vim	" source key mappings listed in this document
+	set asm=0				" don't show any assembly stuff
+endif
 
 " Bundle 'vim-maximizer'
 nnoremap <leader>x :MaximizerToggle<CR>
