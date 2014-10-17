@@ -116,7 +116,9 @@ let g:mapleader = ","
 
 " fswitch
 " Bundle 'fswitch'
-noremap <leader>a <ESC>:FSHere<CR>
+nnoremap <leader>a <ESC>:FSHere<CR>
+inoremap  <F1> <ESC>:FSHere<CR>
+nnoremap  <F1> <ESC>:FSHere<CR>
 
 " buffer related settings
 
@@ -161,13 +163,37 @@ noremap <C-L> <C-W>l
 
 nnoremap <F4> :NERDTreeToggle<cr>
 imap <F4> <Esc>:NERDTreeToggle<cr>
-noremap <leader>c :NERDTreeFind<cr>
+noremap <leader>c :NERDTreeFind<cr><c-w><c-p>
 
 " auto open NERDTree when start
 " autocmd VimEnter * NERDTree
 " wincmd w
 " move cursor from NERDTree to file
 " autocmd VimEnter * wincmd w 
+
+" Check if NERDTree is open or active
+function! rc:isNERDTreeOpen()        
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" check if current buffer is under working directory
+function! rc:isFileInsideCurrentDir()
+	return expand('%:p:.') != expand('%:p')
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! rc:syncTree()
+	if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+		if rc:isFileInsideCurrentDir() 
+			NERDTreeFind
+			wincmd p
+		endif
+	endif
+endfunction
+
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call rc:syncTree()
 
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
@@ -495,4 +521,8 @@ nnoremap <F8> :make<CR>
 
 " set font for gvim
 set guifont=Monospace\ 11
+
+" scroll to top but not at the first line, but the second line
+nnoremap zt ztkj
+nnoremap zb zbjk
 
