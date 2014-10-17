@@ -24,7 +24,7 @@ set softtabstop=4
 set shiftwidth=4
 
 " show cursor at beinning of tab in normal mode
-set list lcs=tab:\ \
+set list lcs=tab:\ \ 
 
 " bind unamed register to system clipboard
 set clipboard=unnamedplus
@@ -185,7 +185,7 @@ endfunction
 " file, and we're not in vimdiff
 function! rc:syncTree()
 	if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-		if rc:isFileInsideCurrentDir()
+		if rc:isFileInsideCurrentDir() && epand('%') != '__Tag_List__'
 			NERDTreeFind
 			wincmd p
 		endif
