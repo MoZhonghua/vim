@@ -181,17 +181,17 @@ function! rc:isFileInsideCurrentDir()
 	return expand('%:p:.') != expand('%:p')
 endfunction
 
-function! rc:isSpecialBuf()
-	let l:fname =  expand('%')
-	if l:fname == '[No Name]'
+function! rc:isInterestingFile()
+	let l:fname = expand('%')
+	let l:extension =  expand('%:e')
+	if l:fname ==? 'makefile' || l:fname ==? 'configure'
 		return 1
 	endif
-	if l:fname == '__Tag_List__'
+	if l:extension ==? 'c' || l:extension ==? 'h' 
+				\ || l:extension ==? 'am' || l:extension ==? 'cpp' 
+				\ || l:extension ==? 'cc' || l:extension ==? 'sh'
 		return 1
-	endif
-	if l:fname == 'NERD_tree_1'
-		return 1
-	endif
+	endif 
 	return 0
 endfunction
 
@@ -199,7 +199,7 @@ endfunction
 " file, and we're not in vimdiff
 function! rc:syncTree()
 	if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-		if !rc:isSpecialBuf() && rc:isFileInsideCurrentDir()
+		if rc:isInterestingFile() && rc:isFileInsideCurrentDir()
 			NERDTreeFind
 			wincmd p
 		endif
@@ -539,4 +539,12 @@ set guifont=Monospace\ 11
 " scroll to top but not at the first line, but the second line
 nnoremap zt ztkj
 nnoremap zb zbjk
+
+" A longer line will be broken after white space to get this width. A zero value 
+" disables this. 
+" ref :help textwidth
+set textwidth=90
+
+" see :help gF
+nnoremap gf gF
 
