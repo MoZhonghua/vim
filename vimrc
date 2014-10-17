@@ -5,7 +5,7 @@
 set exrc
 
 " Remove ALL autocommands for the current group.
-autocmd! 
+autocmd!
 
 " restrict usage of some commands in non-default .vimrc files; commands that
 " wrote to file or execute shell commands are not allowed and map commands are
@@ -24,12 +24,12 @@ set softtabstop=4
 set shiftwidth=4
 
 " show cursor at beinning of tab in normal mode
-set list lcs=tab:\ \ 
+set list lcs=tab:\ \
 
 " bind unamed register to system clipboard
 set clipboard=unnamedplus
 
-" Ctrl-a to select all 
+" Ctrl-a to select all
 noremap <C-a> <ESC>ggVG
 
 set smartcase
@@ -169,10 +169,10 @@ noremap <leader>c :NERDTreeFind<cr><c-w><c-p>
 " autocmd VimEnter * NERDTree
 " wincmd w
 " move cursor from NERDTree to file
-" autocmd VimEnter * wincmd w 
+" autocmd VimEnter * wincmd w
 
 " Check if NERDTree is open or active
-function! rc:isNERDTreeOpen()        
+function! rc:isNERDTreeOpen()
   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
@@ -185,7 +185,7 @@ endfunction
 " file, and we're not in vimdiff
 function! rc:syncTree()
 	if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-		if rc:isFileInsideCurrentDir() 
+		if rc:isFileInsideCurrentDir()
 			NERDTreeFind
 			wincmd p
 		endif
@@ -203,7 +203,7 @@ let NERDTreeIgnore=['\.o$', '\.ko$', '\.symvers$', '\.order$', '\.mod.c$', '\.sw
 let NERDTreeQuitOnOpen=0
 let NERDTreeWinPos = 'right'
 let NERDTreeWinSize = 31
-let NERDTreeShowBookmarks = 1 
+let NERDTreeShowBookmarks = 1
 
 " CtrlP for file searching
 " Bundle 'kien/ctrlp.vim'
@@ -226,10 +226,10 @@ let g:ctrlp_match_window = 'top'
 " Bundle "fholgado/minibufexpl.vim"
 let g:miniBufExplBuffersNeeded = 0
 let g:miniBufExplCycleArround = 1
-let g:miniBufExplMinSize = 1 
+let g:miniBufExplMinSize = 1
 let g:miniBufExplUseSingleClick = 1 " single click to open buffer
 " neend tree on bottom, else it will conflict with vimgdb
-let g:miniBufExplSplitBelow = 0  
+let g:miniBufExplSplitBelow = 0
 let g:miniBufExplorerAutoStart = 1
 
 nnoremap <F3> :MBEToggle<CR>
@@ -274,7 +274,7 @@ let g:windowswap_map_keys = 0 "prevent default bindings
 nnoremap  <leader>Wy :call WindowSwap#MarkWindowSwap()<CR>
 nnoremap  <leader>Wp :call WindowSwap#DoWindowSwap()<CR>
 
-" increase the window size by a factor of 1.5 and decrease the 
+" increase the window size by a factor of 1.5 and decrease the
 " window size by 0.67, you can map this
 nnoremap  <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap  <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
@@ -315,7 +315,7 @@ let Tlist_Auto_Open = 0
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 0
 let Tlist_Compact_Format = 1
-let Tlist_Use_Right_Window = 0  
+let Tlist_Use_Right_Window = 0
 noremap <F2> :TlistToggle<CR>
 
 " conque-shell
@@ -329,7 +329,7 @@ set laststatus=2
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 " clobber
-" let g:Powerline_symbols = 'unicode' 
+" let g:Powerline_symbols = 'unicode'
 " let g:Powerline_symbols = 'fancy'
 "
 " Bundle 'bling/vim-airline'
@@ -354,8 +354,8 @@ hi Search guifg=Yellow guibg=NONE gui=bold,underline
 noremap <leader>h :set hlsearch! hlsearch?<CR>
 
 " toggle quick fix window
-if has('quickfix') 
-	set cscopequickfix=s-,c-,d-,i-,t-,e- 
+if has('quickfix')
+	set cscopequickfix=s-,c-,d-,i-,t-,e-
 endif
 noremap <leader>n :cnext<CR>
 noremap <leader>p :cprev<CR>
@@ -397,11 +397,11 @@ nnoremap  <leader>o :call ToggleList("Quickfix List", 'c')<CR>
 set nopaste	
 
 " expand %% to %:h in command mode
-" not work, some configs conflicts with this, but I don't know which 
+" not work, some configs conflicts with this, but I don't know which
 " cnoremap <expr> %% getcmdtype( ) == ':' ? expand('%:h').'/' : '%%'
 
 " fix delay when exit visaul mode
-set timeoutlen=1000 
+set timeoutlen=1000
 set ttimeoutlen=0
 
 " show Ex command in another tab
@@ -417,11 +417,11 @@ command! -nargs=+ -complete=command TabMessage call TabMessage(<q-args>)
 
 " use \v for very magic and \V for very nomagic
 " default is magic mode, that is:
-"  . * [ ]     special meaning but 
-"  [^_a-zA-z0-9] will match literally, such as ( ) { } + | ? 
+"  . * [ ]     special meaning but
+"  [^_a-zA-z0-9] will match literally, such as ( ) { } + | ?
 set nomagic
 
-" a quick way to edit vimrc 
+" a quick way to edit vimrc
 noremap <leader>rc :e ~/.vimrc<CR>
 
 " use ; to enter command mode
@@ -444,7 +444,7 @@ nnoremap <F12> :YRShow<CR>
 let g:yankring_replace_n_pkey = ''
 let g:yankring_replace_n_nkey = ''
 
-" bufkill: kill buffer without closing window 
+" bufkill: kill buffer without closing window
 " Bundle 'vim-scripts/bufkill.vim'
 
 " set imdisable
@@ -452,17 +452,17 @@ let g:yankring_replace_n_nkey = ''
 
 " VimIM
 " Bundle 'vim-scripts/VimIM'
-" let g:vimim_cloud = 'google,sogou,baidu,qq'   
-" let g:vimim_map = 'tab_as_gi'   
-" let g:vimim_mode = 'dynamic'   
-" let g:vimim_mycloud = 0   
-" let g:vimim_plugin = 'C:/var/mobile/vim/vimfiles/plugin'   
-" let g:vimim_punctuation = 2   
-" let g:vimim_shuangpin = 0   
-" let g:vimim_toggle = 'pinyin,google,sogou' 
+" let g:vimim_cloud = 'google,sogou,baidu,qq'
+" let g:vimim_map = 'tab_as_gi'
+" let g:vimim_mode = 'dynamic'
+" let g:vimim_mycloud = 0
+" let g:vimim_plugin = 'C:/var/mobile/vim/vimfiles/plugin'
+" let g:vimim_punctuation = 2
+" let g:vimim_shuangpin = 0
+" let g:vimim_toggle = 'pinyin,google,sogou'
 
 " see http://vimim.googlecode.com/svn/vimim/vimim.html
-let g:vimim_cloud = 'sogou'   
+let g:vimim_cloud = 'sogou'
 
 " ctrl-\ to toggle input method
 " or ctrl-_, both are ok
@@ -491,7 +491,7 @@ nnoremap <Leader>7 :7b<CR>
 nnoremap <Leader>8 :8b<CR>
 nnoremap <Leader>9 :9b<CR>
 
-" backspace 
+" backspace
 set backspace=indent,eol,start
 
 " vim-scroll-bar
