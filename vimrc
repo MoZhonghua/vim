@@ -181,11 +181,25 @@ function! rc:isFileInsideCurrentDir()
 	return expand('%:p:.') != expand('%:p')
 endfunction
 
+function! rc:isSpecialBuf()
+	let l:fname =  expand('%')
+	if l:fname == '[No Name]'
+		return 1
+	endif
+	if l:fname == '__Tag_List__'
+		return 1
+	endif
+	if l:fname == 'NERD_tree_1'
+		return 1
+	endif
+	return 0
+endfunction
+
 " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
 function! rc:syncTree()
 	if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-		if rc:isFileInsideCurrentDir() && epand('%') != '__Tag_List__'
+		if !rc:isSpecialBuf() && rc:isFileInsideCurrentDir()
 			NERDTreeFind
 			wincmd p
 		endif
