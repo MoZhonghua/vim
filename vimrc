@@ -548,3 +548,7 @@ set textwidth=90
 " see :help gF
 nnoremap gf gF
 
+" startify settings
+let g:startify_relative_path          = 1
+let g:startify_change_to_dir          = 0
+ 
