@@ -552,3 +552,7 @@ nnoremap gf gF
 let g:startify_relative_path          = 1
 let g:startify_change_to_dir          = 0
  
+
+" :open file:123
+" Bundle 'bogado/file-line'
+
