@@ -198,12 +198,14 @@ endfunction
 " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
 function! rc:syncTree()
-	if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-		if rc:isInterestingFile() && rc:isFileInsideCurrentDir()
-			NERDTreeFind
+    if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+	if rc:isInterestingFile() && rc:isFileInsideCurrentDir()
+	    NERDTreeFind
+		if expand('%') =~ 'NERD_tree'
 			wincmd p
-		endif
+	    endif
 	endif
+    endif
 endfunction
 
 " Highlight currently open buffer in NERDTree
@@ -331,6 +333,9 @@ let Tlist_Close_On_Select = 0
 let Tlist_Compact_Format = 1
 let Tlist_Use_Right_Window = 0
 noremap <F2> :TlistToggle<CR>
+
+" use shorter updatetime to trigger |CursorHold| autocommand event
+set updatetime=1000
 
 " conque-shell
 " Bundle 'oplatek/Conque-Shell'
