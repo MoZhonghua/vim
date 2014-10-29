@@ -26,46 +26,47 @@ function! SToggleGDB()
     set statusline+=%F%m%r%h%w\ [POS=%04l,%04v]\ [%p%%]\ [LEN=%L]\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
     :call <SID>Toggle()
 endfunction
-nmap <F7>  :call ToggleGDB()<cr>
-nmap <S-F7>  :call <SID>Toggle()<cr>
+nnoremap <F7>  :call ToggleGDB()<cr>
+nnoremap <S-F7>  :call <SID>Toggle()<cr>
 
-" nmap <S-F7>  :call SToggleGDB()<cr>
-" nmap <F7>  :call <SID>Toggle()<CR>
+" nnoremap <S-F7>  :call SToggleGDB()<cr>
+" nnoremap <F7>  :call <SID>Toggle()<CR>
 
 " Toggle between vim default and custom mappings
 function! s:Toggle()
     if s:gdb_k
 	let s:gdb_k = 0
-	map <Space> :call gdb("")<CR>
-	nmap <silent> <C-Z> :call gdb("\032")<CR>
+	nnoremap <Space> :call gdb("")<CR>
+	nnoremap <silent> <C-Z> :call gdb("\032")<CR>
 
-	nmap <silent> B :call gdb("info breakpoints")<CR>
-	nmap <silent> L :call gdb("info locals")<CR>
-	nmap <silent> A :call gdb("info args")<CR>
-	nmap <silent> S :call gdb("step")<CR>
-	nmap <silent> I :call gdb("stepi")<CR>
-	nmap <silent> <C-N> :call gdb("next")<CR>
-	nmap <silent> X :call gdb("nexti")<CR>
-	nmap <silent> F :call gdb("finish")<CR>
-	nmap <silent> R :call gdb("run")<CR>
-	nmap <silent> Q :call gdb("quit")<CR>
-	nmap <silent> C :call gdb("continue")<CR>
-	nmap <silent> W :call gdb("where")<CR>
-	nmap <silent> <C-U> :call gdb("up")<CR>
-	nmap <silent> <C-D> :call gdb("down")<CR>
+	nnoremap <silent> B :call gdb("info breakpoints")<CR>
+	nnoremap <silent> L :call gdb("info locals")<CR>
+	nnoremap <silent> A :call gdb("info args")<CR>
+	nnoremap <silent> S :call gdb("step")<CR>
+	nnoremap <silent> I :call gdb("stepi")<CR>
+	nnoremap <silent> <C-N> :call gdb("next")<CR>
+	nnoremap <silent> X :call gdb("nexti")<CR>
+	nnoremap <silent> F :call gdb("finish")<CR>
+	nnoremap <silent> R :call gdb("run")<CR>
+	nnoremap <silent> Q :call gdb("quit")<CR>
+	nnoremap <silent> C :call gdb("continue")<CR>
+	nnoremap <silent> W :call gdb("where")<CR>
+	nnoremap <silent> <C-U> :call gdb("up")<CR>
+	nnoremap <silent> <C-D> :call gdb("down")<CR>
 
 	" set/clear bp at current line
-	nmap <silent> <C-B> :call <SID>Breakpoint("break")<CR>
-	nmap <silent> <C-E> :call <SID>Breakpoint("clear")<CR>
+	nnoremap <silent> <F9> :call <SID>Breakpoint("break")<CR>
+	nnoremap <silent> <C-F9> :call <SID>Breakpoint("clear")<CR>
+	nnoremap <silent> <S-F9> :call <SID>Breakpoint("disable")<CR>
 
 	" print value at cursor
-	nmap <silent> <C-P> :call gdb("print " . expand("<cword>"))<CR>
+	nnoremap <silent> <C-P> :call gdb("print " . expand("<cword>"))<CR>
 
 	" display Visual selected expression
-	vmap <silent> <C-P> y:call gdb("createvar " . "<C-R>"")<CR>
+	vnoremap <silent> <C-P> y:call gdb("createvar " . "<C-R>"")<CR>
 
 	" print value referenced by word at cursor
-	nmap <silent> <C-X> :call gdb("print *" . expand("<cword>"))<CR>
+	nnoremap <silent> <C-Y> :call gdb("print *" . expand("<cword>"))<CR>
 
 	echohl ErrorMsg
 	echo "gdb keys mapped"
@@ -92,10 +93,11 @@ function! s:Toggle()
 	nunmap <C-U>
 	nunmap <C-D>
 
-	nunmap <C-B>
-	nunmap <C-E>
+	nunmap <F9>
+	nunmap <C-F9>
+	nunmap <S-F9>
 	nunmap <C-P>
-	nunmap <C-X>
+	nunmap <C-Y>
 
 	" restore custom mappings
 	noremap <C-n> :BufSurfForward<CR>
