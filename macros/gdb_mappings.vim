@@ -55,9 +55,9 @@ function! s:Toggle()
 	nnoremap <silent> <C-D> :call gdb("down")<CR>
 
 	" set/clear bp at current line
-	nnoremap <silent> <F9> :call <SID>Breakpoint("break")<CR>
-	nnoremap <silent> <C-F9> :call <SID>Breakpoint("clear")<CR>
-	nnoremap <silent> <S-F9> :call <SID>Breakpoint("disable")<CR>
+	nnoremap <silent> <C-B> :call <SID>Breakpoint("break")<CR>
+	nnoremap <silent> <F9> :call <SID>Breakpoint("clear")<CR>
+	nnoremap <silent> <C-F9> :call <SID>Breakpoint("disable")<CR>
 
 	" print value at cursor
 	nnoremap <silent> <C-P> :call gdb("print " . expand("<cword>"))<CR>
@@ -93,9 +93,9 @@ function! s:Toggle()
 	nunmap <C-U>
 	nunmap <C-D>
 
+	nunmap <C-B>
 	nunmap <F9>
 	nunmap <C-F9>
-	nunmap <S-F9>
 	nunmap <C-P>
 	nunmap <C-Y>
 
