@@ -564,8 +564,10 @@ let g:startify_change_to_dir          = 0
 " run external grep, :grep is very slow with YCM
 function! Qgrep(str)
     let l:cmd = "grep -rnFI --include='*.[ch]'" . " " . a:str . " ."
-	echohl ErrorMsg
-	echo l:cmd
+    echohl ErrorMsg
+    echo l:cmd
+    " create a global mark, so we can jump back
+    :mark A
     :cexpr system(l:cmd)
 endfunction
 command! -nargs=+ -complete=command Qgrep call Qgrep(<q-args>)
