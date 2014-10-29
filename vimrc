@@ -561,3 +561,13 @@ let g:startify_change_to_dir          = 0
 " :open file:123
 " Bundle 'bogado/file-line'
 
+" run external grep, :grep is very slow with YCM
+function! Qgrep(str)
+    let l:cmd = "grep -rnFI --include='*.[ch]'" . " " . a:str . " ."
+	echohl ErrorMsg
+	echo l:cmd
+    :cexpr system(l:cmd)
+endfunction
+command! -nargs=+ -complete=command Qgrep call Qgrep(<q-args>)
+nnoremap <leader>g :call Qgrep(expand('<cword>'))<CR>
+
