@@ -201,8 +201,9 @@ function! rc:syncTree()
     if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
 	if rc:isInterestingFile() && rc:isFileInsideCurrentDir()
 	    NERDTreeFind
-		if expand('%') =~ 'NERD_tree'
-			wincmd p
+	    execute "normal! zz"
+	    if expand('%') =~ 'NERD_tree'
+		wincmd p
 	    endif
 	endif
     endif
@@ -562,14 +563,18 @@ let g:startify_change_to_dir          = 0
 " Bundle 'bogado/file-line'
 
 " run external grep, :grep is very slow with YCM
-function! Qgrep(str)
-    let l:cmd = "grep -rnFI --include='*.[ch]'" . " " . a:str . " ."
-    echohl ErrorMsg
-    echo l:cmd
-    " create a global mark, so we can jump back
-    :mark A
-    :cexpr system(l:cmd)
+function! Qgrep(str, mark)
+	let l:cmd = "grep -rnFI --include='*.[ch]'" . " " . a:str . " ."
+	echohl ErrorMsg
+	echo l:cmd
+	" create a global mark, so we can jump back
+	if a:mark != ""
+		execute "mark " . a:mark
+	endif
+	:cexpr system(l:cmd)
 endfunction
-command! -nargs=+ -complete=command Qgrep call Qgrep(<q-args>)
-nnoremap <leader>g :call Qgrep(expand('<cword>'))<CR>
+nnoremap <leader>g :call Qgrep(expand('<cword>'), 'Z')<CR>
+nnoremap <leader>Ga :call Qgrep(expand('<cword>'), 'A')<CR>
+nnoremap <leader>Gb :call Qgrep(expand('<cword>'), 'B')<CR>
+nnoremap <leader>Gc :call Qgrep(expand('<cword>'), 'C')<CR>
 
