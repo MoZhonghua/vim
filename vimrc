@@ -1,11 +1,14 @@
-" behave like windows
-" source $VIMRUNTIME/mswin.vim
-
 " source .vimrc from any directory you run vim from
 set exrc
 
 " Remove ALL autocommands for the current group.
 autocmd!
+
+if has("win32")
+	" behave like windows
+	source $VIMRUNTIME/mswin.vim
+	behave mswin
+endif
 
 " restrict usage of some commands in non-default .vimrc files; commands that
 " wrote to file or execute shell commands are not allowed and map commands are
@@ -23,14 +26,16 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-" show cursor at beinning of tab in normal mode
-set list lcs=tab:\ \ 
+if !has("win32")
+	" show cursor at beinning of tab in normal mode
+	set list lcs=tab:\ \ 
+
+	" Ctrl-a to select all
+	noremap <C-a> <ESC>ggVG
+endif
 
 " bind unamed register to system clipboard
 set clipboard=unnamedplus
-
-" Ctrl-a to select all
-noremap <C-a> <ESC>ggVG
 
 set smartcase
 
@@ -46,22 +51,19 @@ call add(g:pathogen_disabled, 'delimitMate')
 call add(g:pathogen_disabled, 'vim-scroll-position')
 call add(g:pathogen_disabled, 'autosession.vim')
 call add(g:pathogen_disabled, 'VimIM')
-execute pathogen#infect()
+
+if has('win32')
+	call add(g:pathogen_disabled, 'YouCompleteMe')
+	execute pathogen#infect('~\vimfiles\bundle\{}')
+else
+	execute pathogen#infect()
+endif
 
 " set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
 " Bundle 'gmarik/vundle'
-
-"my Bundle here:
-"
-" original repos on github
-
-
-"my Bundle here:
-"
-" original repos on github
 " Bundle 'kien/ctrlp.vim'
 " Bundle 'sukima/xmledit'
 " Bundle 'sjl/gundo.vim'
@@ -73,12 +75,7 @@ call vundle#rc()
 " Bundle 't9md/vim-quickhl'
 " Bundle 'Lokaltog/vim-powerline'
 " Bundle 'scrooloose/nerdcommenter'
-
-" autocomplete for [] () and so on
 " Bundle 'Raimondi/delimitMate'
-
-"..................................
-" vim-scripts repos
 " Bundle 'YankRing.vim'
 " Bundle 'vcscommand.vim'
 " Bundle 'ShowPairs'
@@ -86,9 +83,8 @@ call vundle#rc()
 " Bundle 'EasyGrep'
 " Bundle 'VOoM'
 " Bundle 'VimIM'
-"..................................
-" non github repos
 " Bundle 'git://git.wincent.com/command-t.git'
+
 "......................................
 filetype plugin indent on
 
@@ -514,6 +510,7 @@ nnoremap <Leader>9 :9b<CR>
 " backspace
 set backspace=indent,eol,start
 
+" Bundle 'keitheis/vim-scroll-position'
 " vim-scroll-bar
 " Default markers
 let g:scroll_position_marker         = '>'
@@ -539,8 +536,10 @@ let g:scroll_position_visual = 1
 inoremap <F8> <ESC>:make<CR>
 nnoremap <F8> :make<CR>
 
-" set font for gvim
-set guifont=Monospace\ 11
+if !has('win32')
+	" set font for gvim
+	set guifont=Monospace\ 11
+endif
 
 " scroll to top but not at the first line, but the second line
 nnoremap zt ztkj
@@ -554,7 +553,7 @@ set textwidth=90
 " see :help gF
 nnoremap gf gF
 
-" startify settings
+" Bundle 'mhinz/vim-startify'
 let g:startify_relative_path          = 1
 let g:startify_change_to_dir          = 0
  
@@ -573,8 +572,19 @@ function! Qgrep(str, mark)
 	endif
 	:cexpr system(l:cmd)
 endfunction
+function! Qgrep1(str)
+	call Qgrep(a:str, "Z")
+endfunction
+command! -nargs=+ -complete=command Qgrep call Qgrep1(<q-args>)
 nnoremap <leader>g :call Qgrep(expand('<cword>'), 'Z')<CR>
 nnoremap <leader>Ga :call Qgrep(expand('<cword>'), 'A')<CR>
 nnoremap <leader>Gb :call Qgrep(expand('<cword>'), 'B')<CR>
 nnoremap <leader>Gc :call Qgrep(expand('<cword>'), 'C')<CR>
+
+" Unite and so on
+" Bundle 'Shougo/unite.vim'
+" Bundle 'Shougo/vimproc.vim'
+" Bundle 'Shougo/neomru.vim'
+
+set history=4000
 
