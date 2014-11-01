@@ -17,7 +17,16 @@ endif
 "
 
 syntax on
-colorscheme desert
+
+
+" font and colorscheme
+if !has('win32')
+	colorscheme desert
+	set guifont=Monospace\ 11
+else
+	colorscheme solarized
+	set guifont=Consolas:h12:cANSI
+endif
 
 set number
 set ruler
@@ -35,7 +44,8 @@ if !has("win32")
 endif
 
 " bind unamed register to system clipboard
-set clipboard=unnamedplus
+" ref http://stackoverflow.com/questions/8757395/can-vim-use-the-system-clipboards-by-default
+set clipboard=unnamed,unnamedplus
 
 set smartcase
 
@@ -100,11 +110,13 @@ vnoremap <silent> # :<C-U>
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
-" gvim settings
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
+if !has('win32')
+	" gvim settings
+	set guioptions-=m  "remove menu bar
+	set guioptions-=T  "remove toolbar
+	set guioptions-=r  "remove right-hand scroll bar
+	set guioptions-=L  "remove left-hand scroll bar
+endif
 
 " leader settings
 let mapleader = ","
@@ -438,7 +450,11 @@ command! -nargs=+ -complete=command TabMessage call TabMessage(<q-args>)
 set nomagic
 
 " a quick way to edit vimrc
-noremap <leader>rc :e ~/.vimrc<CR>
+if !has('win32')
+	noremap <leader>rc :e ~/.vimrc<CR>
+else
+	noremap <leader>rc :e ~\_vimrc<CR>
+endif
 
 " use ; to enter command mode
 " noremap ; :
@@ -536,10 +552,6 @@ let g:scroll_position_visual = 1
 inoremap <F8> <ESC>:make<CR>
 nnoremap <F8> :make<CR>
 
-if !has('win32')
-	" set font for gvim
-	set guifont=Monospace\ 11
-endif
 
 " scroll to top but not at the first line, but the second line
 nnoremap zt ztkj
@@ -587,4 +599,14 @@ nnoremap <leader>Gc :call Qgrep(expand('<cword>'), 'C')<CR>
 " Bundle 'Shougo/neomru.vim'
 
 set history=4000
+
+" set langmenu=en_US.GBK    " sets the language of the menu (gvim)
+" language en                 " sets the language of the messages / ui (vim)
+" set the menu & the message to English
+if has('win32')
+	set langmenu=en_US
+	let $LANG= 'en_US'
+	source $VIMRUNTIME/delmenu.vim
+	source $VIMRUNTIME/menu.vim
+endif
 
