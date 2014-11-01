@@ -24,7 +24,7 @@ if !has('win32')
 	colorscheme desert
 	set guifont=Monospace\ 11
 else
-	colorscheme solarized
+	colorscheme desert
 	set guifont=Consolas:h12:cANSI
 endif
 
