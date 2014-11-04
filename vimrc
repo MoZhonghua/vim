@@ -610,3 +610,8 @@ if has('win32')
 	source $VIMRUNTIME/menu.vim
 endif
 
+" cscope in windows
+if has('win32')
+	set cscopeprg=E:\kuaipan_kasulle\tools\cscope.exe
+endif
+
