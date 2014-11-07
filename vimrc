@@ -203,9 +203,14 @@ function! rc:isInterestingFile()
 	return 0
 endfunction
 
+let g:sync_tree_auto_enable = 1
+
 " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
 function! rc:syncTree()
+	if g:sync_tree_auto_enable == 0
+		return
+	endif
     if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
 	if rc:isInterestingFile() && rc:isFileInsideCurrentDir()
 	    NERDTreeFind
@@ -275,6 +280,7 @@ nnoremap <silent><leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>y :YcmDiags<CR>
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 let g:ycm_show_diagnostics_ui = 1
+" let g:ycm_extra_conf_globlist = ['./*']
 
 " Bundle 'scrooloose/syntastic'
 
