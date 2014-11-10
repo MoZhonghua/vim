@@ -45,7 +45,14 @@ endif
 
 " bind unamed register to system clipboard
 " ref http://stackoverflow.com/questions/8757395/can-vim-use-the-system-clipboards-by-default
-set clipboard=unnamed,unnamedplus
+
+if has('win32')
+	set clipboard+=unnamed,unnamedplus
+else
+	" This will not work if you login with normal user but
+	" run vim as root
+	set clipboard=unnamedplus
+endif
 
 set smartcase
 
@@ -61,6 +68,8 @@ call add(g:pathogen_disabled, 'delimitMate')
 call add(g:pathogen_disabled, 'vim-scroll-position')
 call add(g:pathogen_disabled, 'autosession.vim')
 call add(g:pathogen_disabled, 'VimIM')
+call add(g:pathogen_disabled, 'vim-powerline')
+" call add(g:pathogen_disabled, 'vim-airline')
 
 if has('win32')
 	call add(g:pathogen_disabled, 'YouCompleteMe')
@@ -260,7 +269,7 @@ let g:miniBufExplMinSize = 1
 let g:miniBufExplUseSingleClick = 1 " single click to open buffer
 " neend tree on bottom, else it will conflict with vimgdb
 let g:miniBufExplSplitBelow = 0
-let g:miniBufExplorerAutoStart = 1
+let g:miniBufExplorerAutoStart = 0
 
 nnoremap <F3> :MBEToggle<CR>
 inoremap <F3> <ESC>:MBEToggle<CR>
@@ -365,11 +374,13 @@ set fillchars+=stl:\ ,stlnc:\
 " clobber
 " let g:Powerline_symbols = 'unicode'
 " let g:Powerline_symbols = 'fancy'
-"
+
 " Bundle 'bling/vim-airline'
-" airline theme
 " Bundle 'paranoida/vim-airlineish'
 let g:airline_theme = 'airlineish'
+let g:airline#extensions#tabline#enabled = 1
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " move like bash in command mode
 " C-w delete last work
