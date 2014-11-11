@@ -382,6 +382,13 @@ set fillchars+=stl:\ ,stlnc:\
 " Bundle 'paranoida/vim-airlineish'
 let g:airline_theme = 'airlineish'
 let g:airline#extensions#tabline#enabled = 1
+
+" show relative path to current working dir
+let g:airline_section_c = '%f'
+
+" disable warning field, so we have more space to show file path
+let g:airline_section_warning=""
+
 " let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#left_alt_sep = '|'
 
