@@ -26,11 +26,11 @@ function! SToggleGDB()
     set statusline+=%F%m%r%h%w\ [POS=%04l,%04v]\ [%p%%]\ [LEN=%L]\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
     :call <SID>Toggle()
 endfunction
-nnoremap <F7>  :call ToggleGDB()<cr>
+nnoremap <C-F7>  :call ToggleGDB()<cr>
 nnoremap <S-F7>  :call <SID>Toggle()<cr>
 
 " nnoremap <S-F7>  :call SToggleGDB()<cr>
-" nnoremap <F7>  :call <SID>Toggle()<CR>
+" nnoremap <C-F7>  :call <SID>Toggle()<CR>
 
 " Toggle between vim default and custom mappings
 function! s:Toggle()
