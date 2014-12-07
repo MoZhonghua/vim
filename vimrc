@@ -587,7 +587,7 @@ nnoremap zb zbjk
 " A longer line will be broken after white space to get this width. A zero value 
 " disables this. 
 " ref :help textwidth
-set textwidth=90
+set textwidth=80
 
 " see :help gF
 nnoremap gf gF
