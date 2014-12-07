@@ -578,7 +578,9 @@ let g:scroll_position_visual = 1
 " F8 to make
 inoremap <F8> <ESC>:make<CR>
 nnoremap <F8> :make<CR>
-
+" <C-F8> to update tags of current file, :pwd should be where old tags 
+" file locates in
+nnoremap <C-F8> :!ctags -a %<CR>
 
 " scroll to top but not at the first line, but the second line
 nnoremap zt ztkj
