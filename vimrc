@@ -340,7 +340,7 @@ endif
 
 " cscope key maps
 nnoremap <leader>r  :cscope find c <C-r>=expand("<cword>")<CR><CR>
-nnoremap <leader>t  :cscope find t <C-r>=expand("<cword>")<CR><CR>
+nnoremap <leader>t  :cscope find s <C-r>=expand("<cword>")<CR><CR>
 " nnoremap <leader>c  :scscope find c <C-r>=expand("<cword>")<CR><CR>
 " nnoremap <leader>vc :vert scscope find c <C-r>=expand("<cword>")<CR><CR>
 
@@ -498,7 +498,7 @@ nnoremap k gk
 
 " YankRing
 " Bundle 'vim-scripts/YankRing.vim'
-nnoremap <F12> :YRShow<CR>
+nnoremap <C-F12> :YRShow<CR>
 " we use ctrl-p / ctrl-n to swith between buffer
 let g:yankring_replace_n_pkey = ''
 let g:yankring_replace_n_nkey = ''
@@ -643,4 +643,19 @@ endif
 if has('win32')
 	set cscopeprg=E:\kuaipan_kasulle\tools\cscope.exe
 endif
+
+" use :e! to discard undo history when you get a known good point, for example,
+" after you commit changes.
+set undoreload=0
+
+
+" FSSwitch
+" disable alternative file creation
+let fsnonewfiles=0
+
+nnoremap <F12> :set iskeyword+=45,46,62<CR>
+nnoremap <S-F12> :set iskeyword-=45,46,62<CR>
+
+" CCTree
+" Bundle 'vim-scripts/CCTree'
 
