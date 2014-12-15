@@ -75,7 +75,7 @@ if has('win32')
 	call add(g:pathogen_disabled, 'YouCompleteMe')
 	execute pathogen#infect('~\vimfiles\bundle\{}')
 else
-	if !has('python')
+	if !has('python') || v:version < 703
 		call add(g:pathogen_disabled, 'YouCompleteMe')
 	endif
 	execute pathogen#infect()
