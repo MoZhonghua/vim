@@ -319,8 +319,11 @@ nnoremap  <leader>Wp :call WindowSwap#DoWindowSwap()<CR>
 
 " increase the window size by a factor of 1.5 and decrease the
 " window size by 0.67, you can map this
-nnoremap  <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap  <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+" nnoremap  <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+" nnoremap  <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
+nnoremap  <Leader>+ :resize +3<CR>
+nnoremap  <Leader>- :resize -3<CR>
 
 " cscope settings copied from help
 if has("cscope")
@@ -341,6 +344,7 @@ endif
 " cscope key maps
 nnoremap <leader>r  :cscope find c <C-r>=expand("<cword>")<CR><CR>
 nnoremap <leader>t  :cscope find s <C-r>=expand("<cword>")<CR><CR>
+nnoremap <leader>g  :cscope find g <C-r>=expand("<cword>")<CR><CR>
 " nnoremap <leader>c  :scscope find c <C-r>=expand("<cword>")<CR><CR>
 " nnoremap <leader>vc :vert scscope find c <C-r>=expand("<cword>")<CR><CR>
 
@@ -617,10 +621,10 @@ function! Qgrep1(str)
 	call Qgrep(a:str, "Z")
 endfunction
 command! -nargs=+ -complete=command Qgrep call Qgrep1(<q-args>)
-nnoremap <leader>g :call Qgrep(expand('<cword>'), 'Z')<CR>
-nnoremap <leader>Ga :call Qgrep(expand('<cword>'), 'A')<CR>
-nnoremap <leader>Gb :call Qgrep(expand('<cword>'), 'B')<CR>
-nnoremap <leader>Gc :call Qgrep(expand('<cword>'), 'C')<CR>
+" nnoremap <leader>g :call Qgrep(expand('<cword>'), 'Z')<CR>
+" nnoremap <leader>Ga :call Qgrep(expand('<cword>'), 'A')<CR>
+" nnoremap <leader>Gb :call Qgrep(expand('<cword>'), 'B')<CR>
+" nnoremap <leader>Gc :call Qgrep(expand('<cword>'), 'C')<CR>
 
 " Unite and so on
 " Bundle 'Shougo/unite.vim'
@@ -659,3 +663,13 @@ nnoremap <S-F12> :set iskeyword-=45,46,62<CR>
 " CCTree
 " Bundle 'vim-scripts/CCTree'
 
+set fileencodings=ucs-bom,gbk,utf-8,default,latin1
+
+" toggle set paste
+noremap <leader>u :set paste!<CR>
+
+" Markdown
+" Bundle 'plasticboy/vim-markdown'
+" let g:vim_markdown_folding_disabled=1
+
+" Bundle 'hughbien/md-vim'

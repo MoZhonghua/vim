@@ -25,9 +25,15 @@
 [submodule "bundle/fswitch"]
 	path = bundle/fswitch
 	url  = https://github.com/vim-scripts/fswitch.git
+[submodule "bundle/md-vim"]
+	path = bundle/md-vim
+	url  = https://github.com/hughbien/md-vim.git
 [submodule "bundle/minibufexpl.vim"]
 	path = bundle/minibufexpl.vim
 	url  = https://github.com/fholgado/minibufexpl.vim.git
+[submodule "bundle/neomru.vim"]
+	path = bundle/neomru.vim
+	url  = https://github.com/Shougo/neomru.vim.git
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url  = https://github.com/scrooloose/nerdtree.git
@@ -40,12 +46,18 @@
 [submodule "bundle/taglist.vim"]
 	path = bundle/taglist.vim
 	url  = https://github.com/vim-scripts/taglist.vim.git
+[submodule "bundle/unite.vim"]
+	path = bundle/unite.vim
+	url  = https://github.com/Shougo/unite.vim.git
 [submodule "bundle/vim-airline"]
 	path = bundle/vim-airline
 	url  = https://github.com/bling/vim-airline.git
 [submodule "bundle/vim-airlineish"]
 	path = bundle/vim-airlineish
 	url  = https://github.com/paranoida/vim-airlineish.git
+[submodule "bundle/vim-autotag"]
+	path = bundle/vim-autotag
+	url  = https://github.com/craigemery/vim-autotag.git
 [submodule "bundle/vim-bufsurf"]
 	path = bundle/vim-bufsurf
 	url  = https://github.com/ton/vim-bufsurf.git
@@ -58,9 +70,6 @@
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url  = https://github.com/tpope/vim-fugitive.git
-[submodule "bundle/VimIM"]
-	path = bundle/VimIM
-	url  = https://github.com/vim-scripts/VimIM.git
 [submodule "bundle/vim-maximizer"]
 	path = bundle/vim-maximizer
 	url  = https://github.com/vim-scripts/vim-maximizer.git
@@ -70,15 +79,15 @@
 [submodule "bundle/vim-powerline"]
 	path = bundle/vim-powerline
 	url  = https://github.com/Lokaltog/vim-powerline.git
+[submodule "bundle/vimproc.vim"]
+	path = bundle/vimproc.vim
+	url  = https://github.com/Shougo/vimproc.vim.git
 [submodule "bundle/vim-scroll-position"]
 	path = bundle/vim-scroll-position
 	url  = https://github.com/keitheis/vim-scroll-position.git
 [submodule "bundle/vim-startify"]
 	path = bundle/vim-startify
 	url  = https://github.com/mhinz/vim-startify.git
-[submodule "bundle/vim-windowswap"]
-	path = bundle/vim-windowswap
-	url  = https://github.com/wesQ3/vim-windowswap.git
 [submodule "bundle/vundle"]
 	path = bundle/vundle
 	url  = https://github.com/gmarik/vundle.git

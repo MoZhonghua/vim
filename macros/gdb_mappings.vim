@@ -68,6 +68,8 @@ function! s:Toggle()
 	" print value referenced by word at cursor
 	nnoremap <silent> <C-Y> :call gdb("print *" . expand("<cword>"))<CR>
 
+	set iskeyword+=45,46,62
+
 	echohl ErrorMsg
 	echo "gdb keys mapped"
 	echohl None
@@ -102,6 +104,8 @@ function! s:Toggle()
 	" restore custom mappings
 	noremap <C-n> :BufSurfForward<CR>
 	noremap <C-p> :BufSurfBack<CR>
+
+	set iskeyword-=45,46,62
 
 	echohl ErrorMsg
 	echo "gdb keys reset to default"
