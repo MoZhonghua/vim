@@ -26,8 +26,8 @@ function! SToggleGDB()
     set statusline+=%F%m%r%h%w\ [POS=%04l,%04v]\ [%p%%]\ [LEN=%L]\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]
     :call <SID>Toggle()
 endfunction
-nnoremap <C-F7>  :call ToggleGDB()<cr>
-nnoremap <S-F7>  :call <SID>Toggle()<cr>
+nnoremap <F10>  :call ToggleGDB()<cr>
+nnoremap <S-F10>  :call <SID>Toggle()<cr>
 
 " nnoremap <S-F7>  :call SToggleGDB()<cr>
 " nnoremap <C-F7>  :call <SID>Toggle()<CR>

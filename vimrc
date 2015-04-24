@@ -5,9 +5,9 @@ set exrc
 autocmd!
 
 if has("win32")
-	" behave like windows
-	source $VIMRUNTIME/mswin.vim
-	behave mswin
+    " behave like windows
+    source $VIMRUNTIME/mswin.vim
+    behave mswin
 endif
 
 " restrict usage of some commands in non-default .vimrc files; commands that
@@ -21,11 +21,11 @@ syntax on
 
 " font and colorscheme
 if !has('win32')
-	colorscheme desert
-	set guifont=Monospace\ 11
+    colorscheme desert
+    set guifont=Monospace\ 11
 else
-	colorscheme desert
-	set guifont=Consolas:h12:cANSI
+    colorscheme desert
+    set guifont=Consolas:h12:cANSI
 endif
 
 set number
@@ -36,22 +36,22 @@ set softtabstop=4
 set shiftwidth=4
 
 if !has("win32")
-	" show cursor at beinning of tab in normal mode
-	set list lcs=tab:\ \ 
+    " show cursor at beinning of tab in normal mode
+    set list lcs=tab:\ \ 
 
-	" Ctrl-a to select all
-	noremap <C-a> <ESC>ggVG
+    " Ctrl-a to select all
+    noremap <C-a> <ESC>ggVG
 endif
 
 " bind unamed register to system clipboard
 " ref http://stackoverflow.com/questions/8757395/can-vim-use-the-system-clipboards-by-default
 
 if has('win32')
-	set clipboard+=unnamed,unnamedplus
+    set clipboard+=unnamed,unnamedplus
 else
-	" This will not work if you login with normal user but
-	" run vim as root
-	set clipboard=unnamedplus
+    " This will not work if you login with normal user but
+    " run vim as root
+    set clipboard=unnamedplus
 endif
 
 set smartcase
@@ -72,13 +72,13 @@ call add(g:pathogen_disabled, 'vim-powerline')
 " call add(g:pathogen_disabled, 'vim-airline')
 
 if has('win32')
-	call add(g:pathogen_disabled, 'YouCompleteMe')
-	execute pathogen#infect('~\vimfiles\bundle\{}')
+    call add(g:pathogen_disabled, 'YouCompleteMe')
+    execute pathogen#infect('~\vimfiles\bundle\{}')
 else
-	if !has('python') || v:version < 703
-		call add(g:pathogen_disabled, 'YouCompleteMe')
-	endif
-	execute pathogen#infect()
+    if !has('python') || v:version < 703
+	call add(g:pathogen_disabled, 'YouCompleteMe')
+    endif
+    execute pathogen#infect()
 endif
 
 " set rtp+=~/.vim/bundle/vundle/
@@ -112,22 +112,22 @@ filetype plugin indent on
 
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy/<C-R><C-R>=substitute(
-  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+	    \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+	    \gvy/<C-R><C-R>=substitute(
+	    \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+	    \gV:call setreg('"', old_reg, old_regtype)<CR>
 vnoremap <silent> # :<C-U>
-  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-  \gvy?<C-R><C-R>=substitute(
-  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-  \gV:call setreg('"', old_reg, old_regtype)<CR>
+	    \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+	    \gvy?<C-R><C-R>=substitute(
+	    \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+	    \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 if !has('win32')
-	" gvim settings
-	set guioptions-=m  "remove menu bar
-	set guioptions-=T  "remove toolbar
-	set guioptions-=r  "remove right-hand scroll bar
-	set guioptions-=L  "remove left-hand scroll bar
+    " gvim settings
+    set guioptions-=m  "remove menu bar
+    set guioptions-=T  "remove toolbar
+    set guioptions-=r  "remove right-hand scroll bar
+    set guioptions-=L  "remove left-hand scroll bar
 endif
 
 " leader settings
@@ -193,26 +193,28 @@ noremap <leader>c :NERDTreeFind<cr><c-w><c-p>
 
 " Check if NERDTree is open or active
 function! rc:isNERDTreeOpen()
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+    return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
 " check if current buffer is under working directory
 function! rc:isFileInsideCurrentDir()
-	return expand('%:p:.') != expand('%:p')
+    return expand('%:p:.') != expand('%:p')
 endfunction
 
 function! rc:isInterestingFile()
-	let l:fname = expand('%')
-	let l:extension =  expand('%:e')
-	if l:fname ==? 'makefile' || l:fname ==? 'configure'
-		return 1
-	endif
-	if l:extension ==? 'c' || l:extension ==? 'h' 
-				\ || l:extension ==? 'am' || l:extension ==? 'cpp' 
-				\ || l:extension ==? 'cc' || l:extension ==? 'sh'
-		return 1
-	endif 
-	return 0
+    let l:fname = expand('%')
+    let l:extension =  expand('%:e')
+    if l:fname ==? 'makefile' || l:fname ==? 'configure' 
+		\ || l:fname ==? 'CMakeLists.txt'
+	return 1
+    endif
+    if l:extension ==? 'c' || l:extension ==? 'h' 
+		\ || l:extension ==? 'am' || l:extension ==? 'cpp' 
+		\ || l:extension ==? 'cc' || l:extension ==? 'sh'
+		\ || l:extension ==? 'proto'
+	return 1
+    endif 
+    return 0
 endfunction
 
 let g:sync_tree_auto_enable = 1
@@ -220,9 +222,9 @@ let g:sync_tree_auto_enable = 1
 " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
 function! rc:syncTree()
-	if g:sync_tree_auto_enable == 0
-		return
-	endif
+    if g:sync_tree_auto_enable == 0
+	return
+    endif
     if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
 	if rc:isInterestingFile() && rc:isFileInsideCurrentDir()
 	    NERDTreeFind
@@ -252,10 +254,10 @@ let NERDTreeShowBookmarks = 1
 let g:ctrlp_map = '<c-f>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = {
-\ 'dir': '\v[\/]\.(git|hg|svn)$',
-\ 'file': '\v\.(o|ko|so|obj|dll|exe|la|status)$',
-\ 'link': 'some_bad_symbolic_links',
-\ }
+	    \ 'dir': '\v[\/]\.(git|hg|svn)$',
+	    \ 'file': '\v\.(o|ko|so|obj|dll|exe|la|status)$',
+	    \ 'link': 'some_bad_symbolic_links',
+	    \ }
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_files = 0
@@ -300,9 +302,9 @@ let g:ycm_show_diagnostics_ui = 1
 
 " vimgdb
 if has("gdb")
-	set previewheight=12		" set gdb window initial height
-	run macros/gdb_mappings.vim	" source key mappings listed in this document
-	set asm=0				" don't show any assembly stuff
+    set previewheight=12		" set gdb window initial height
+    run macros/gdb_mappings.vim	" source key mappings listed in this document
+    set asm=0				" don't show any assembly stuff
 endif
 
 " Bundle 'vim-maximizer'
@@ -327,18 +329,18 @@ nnoremap  <Leader>- :resize -3<CR>
 
 " cscope settings copied from help
 if has("cscope")
-	set csprg=/usr/bin/cscope
-	set csto=0
-	set cst
-	set nocsverb
-	" add any database in current directory
-	if filereadable("cscope.out")
-		cs add cscope.out
+    set csprg=/usr/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+	cs add cscope.out
 	" else add database pointed to by environment
-	elseif $CSCOPE_DB != ""
-		cs add $CSCOPE_DB
-	endif
-	set csverb
+    elseif $CSCOPE_DB != ""
+	cs add $CSCOPE_DB
+    endif
+    set csverb
 endif
 
 " cscope key maps
@@ -414,37 +416,37 @@ noremap <leader>h :set hlsearch! hlsearch?<CR>
 
 " toggle quick fix window
 if has('quickfix')
-	set cscopequickfix=s-,c-,d-,i-,t-,e-
+    set cscopequickfix=s-,c-,d-,i-,t-,e-
 endif
 noremap <leader>n :cnext<CR>
 noremap <leader>p :cprev<CR>
 " noremap <leader>o :botright copen<CR>
 
 function! GetBufferList()
-	redir =>buflist
-	silent! ls
-	redir END
-	return buflist
+    redir =>buflist
+    silent! ls
+    redir END
+    return buflist
 endfunction
 
 function! ToggleList(bufname, pfx)
-	let buflist = GetBufferList()
-	for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
-		if bufwinnr(bufnum) != -1
-			exec(a:pfx.'close')
-			return
-		endif
-	endfor
-	if a:pfx == 'l' && len(getloclist(0)) == 0
-		echohl ErrorMsg
-		echo "Location List is Empty."
-		return
+    let buflist = GetBufferList()
+    for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+	if bufwinnr(bufnum) != -1
+	    exec(a:pfx.'close')
+	    return
 	endif
-	let winnr = winnr()
-	exec('botright '.a:pfx.'open')
-	if winnr() != winnr
-		wincmd p
-	endif
+    endfor
+    if a:pfx == 'l' && len(getloclist(0)) == 0
+	echohl ErrorMsg
+	echo "Location List is Empty."
+	return
+    endif
+    let winnr = winnr()
+    exec('botright '.a:pfx.'open')
+    if winnr() != winnr
+	wincmd p
+    endif
 endfunction
 
 nnoremap  <leader>l :call ToggleList("Location List", 'l')<CR>
@@ -465,12 +467,12 @@ set ttimeoutlen=0
 
 " show Ex command in another tab
 function! TabMessage(cmd)
-  redir => message
-  silent execute a:cmd
-  redir END
-  tabnew
-  silent put=message
-  set nomodified
+    redir => message
+    silent execute a:cmd
+    redir END
+    tabnew
+    silent put=message
+    set nomodified
 endfunction
 command! -nargs=+ -complete=command TabMessage call TabMessage(<q-args>)
 
@@ -482,9 +484,9 @@ set nomagic
 
 " a quick way to edit vimrc
 if !has('win32')
-	noremap <leader>rc :e ~/.vimrc<CR>
+    noremap <leader>rc :e ~/.vimrc<CR>
 else
-	noremap <leader>rc :e ~\_vimrc<CR>
+    noremap <leader>rc :e ~\_vimrc<CR>
 endif
 
 " use ; to enter command mode
@@ -601,24 +603,24 @@ nnoremap gf gF
 " Bundle 'mhinz/vim-startify'
 let g:startify_relative_path          = 1
 let g:startify_change_to_dir          = 0
- 
+
 
 " :open file:123
 " Bundle 'bogado/file-line'
 
 " run external grep, :grep is very slow with YCM
 function! Qgrep(str, mark)
-	let l:cmd = "grep -rnFI --include='*.[ch]'" . " " . a:str . " ."
-	echohl ErrorMsg
-	echo l:cmd
-	" create a global mark, so we can jump back
-	if a:mark != ""
-		execute "mark " . a:mark
-	endif
-	:cexpr system(l:cmd)
+    let l:cmd = "grep -rnFI --include='*.[ch]' --include='*.cc' --include='*.cpp'" . " " . a:str . " ."
+    echohl ErrorMsg
+    echo l:cmd
+    " create a global mark, so we can jump back
+    if a:mark != ""
+	execute "mark " . a:mark
+    endif
+    :cexpr system(l:cmd)
 endfunction
 function! Qgrep1(str)
-	call Qgrep(a:str, "Z")
+    call Qgrep(a:str, "Z")
 endfunction
 command! -nargs=+ -complete=command Qgrep call Qgrep1(<q-args>)
 " nnoremap <leader>g :call Qgrep(expand('<cword>'), 'Z')<CR>
@@ -637,15 +639,15 @@ set history=4000
 " language en                 " sets the language of the messages / ui (vim)
 " set the menu & the message to English
 if has('win32')
-	set langmenu=en_US
-	let $LANG= 'en_US'
-	source $VIMRUNTIME/delmenu.vim
-	source $VIMRUNTIME/menu.vim
+    set langmenu=en_US
+    let $LANG= 'en_US'
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
 endif
 
 " cscope in windows
 if has('win32')
-	set cscopeprg=E:\kuaipan_kasulle\tools\cscope.exe
+    set cscopeprg=E:\kuaipan_kasulle\tools\cscope.exe
 endif
 
 " use :e! to discard undo history when you get a known good point, for example,
@@ -663,7 +665,7 @@ nnoremap <S-F12> :set iskeyword-=45,46,62<CR>
 " CCTree
 " Bundle 'vim-scripts/CCTree'
 
-set fileencodings=ucs-bom,gbk,utf-8,default,latin1
+set fileencodings=utf-8,ucs-bom,gbk,default,latin1
 
 " toggle set paste
 noremap <leader>u :set paste!<CR>
