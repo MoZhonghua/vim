@@ -60,10 +60,10 @@ function! s:Toggle()
 	nnoremap <silent> <C-F9> :call <SID>Breakpoint("disable")<CR>
 
 	" print value at cursor
-	nnoremap <silent> <C-P> :call gdb("print " . expand("<cword>"))<CR>
+	nnoremap <silent> <C-X> :call gdb("print " . expand("<cword>"))<CR>
 
 	" display Visual selected expression
-	vnoremap <silent> <C-P> y:call gdb("createvar " . "<C-R>"")<CR>
+	vnoremap <silent> <C-X> y:call gdb("createvar " . "<C-R>"")<CR>
 
 	" print value referenced by word at cursor
 	nnoremap <silent> <C-Y> :call gdb("print *" . expand("<cword>"))<CR>
