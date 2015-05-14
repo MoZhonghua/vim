@@ -51,6 +51,7 @@ function! s:Toggle()
 	nnoremap <silent> Q :call gdb("quit")<CR>
 	nnoremap <silent> C :call gdb("continue")<CR>
 	nnoremap <silent> W :call gdb("where")<CR>
+	nnoremap <silent> <C-K> :call gdb("kill")<CR>
 	nnoremap <silent> <C-U> :call gdb("up")<CR>
 	nnoremap <silent> <C-D> :call gdb("down")<CR>
 
@@ -93,6 +94,7 @@ function! s:Toggle()
 	nunmap C
 	nunmap W
 	nunmap <C-U>
+	nunmap <C-K>
 	nunmap <C-D>
 
 	nunmap <C-B>
