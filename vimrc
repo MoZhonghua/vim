@@ -339,7 +339,8 @@ let g:pathogen_disabled = []
 
 " call add(g:pathogen_disabled, 'vim-airline')
 if has('win32')
-    call add(g:pathogen_disabled, 'YouCompleteMe')
+	call add(g:pathogen_disabled, 'vim-autotag')
+	call add(g:pathogen_disabled, 'YouCompleteMe')
     execute pathogen#infect('~\vimfiles\bundle\{}')
 else
     if !has('python') || v:version < 703
@@ -351,25 +352,25 @@ endif
 " set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle "fholgado/minibufexpl.vim"
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'bling/vim-airline'
-Bundle 'bogado/file-line'
-Bundle 'fatih/vim-go'
-Bundle 'fswitch'
-Bundle 'jlanzarotta/bufexplorer'
-Bundle 'kien/ctrlp.vim'
+" Bundle "fholgado/minibufexpl.vim"
+" Bundle 'Valloric/YouCompleteMe'
+" Bundle 'bling/vim-airline'
+" Bundle 'bogado/file-line'
+" Bundle 'fatih/vim-go'
+" Bundle 'fswitch'
+" Bundle 'jlanzarotta/bufexplorer'
+" Bundle 'kien/ctrlp.vim'
 " Bundle 'mhinz/vim-startify'
-Bundle 'paranoida/vim-airlineish'
-Bundle 'scrooloose/nerdtree'
-Bundle 'skammer/vim-css-color'
-Bundle 'ton/vim-bufsurf'
-Bundle 'vim-maximizer'
-Bundle 'vim-scripts/AutoTag'
-Bundle 'vim-scripts/YankRing.vim'
-Bundle 'vim-scripts/bufkill.vim'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'scrooloose/syntastic'
+" Bundle 'paranoida/vim-airlineish'
+" Bundle 'scrooloose/nerdtree'
+" Bundle 'skammer/vim-css-color'
+" Bundle 'ton/vim-bufsurf'
+" Bundle 'vim-maximizer'
+" Bundle 'vim-scripts/AutoTag'
+" Bundle 'vim-scripts/YankRing.vim'
+" Bundle 'vim-scripts/bufkill.vim'
+" Bundle 'vim-scripts/taglist.vim'
+" Bundle 'scrooloose/syntastic'
 
 "......................................
 filetype plugin indent on
