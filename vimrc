@@ -328,48 +328,63 @@ nnoremap <F12> :set iskeyword+=45,46,62<CR>
 nnoremap <S-F12> :set iskeyword-=45,46,62<CR>
 
 " ======================================================================
+" Pathogen - deprecatd, use vundle to manage plugins
+" ======================================================================
+" To disable a plugin, add it's bundle name to the following list
+" let g:pathogen_disabled = []
+
+" call add(g:pathogen_disabled, 'vim-airline')
+" if has('win32')
+"     call add(g:pathogen_disabled, 'YouCompleteMe')
+"     call add(g:pathogen_disabled, 'vim-autotag')
+"     execute pathogen#infect('~\.vim\bundle\{}')
+" else
+"     if !has('python') || v:version < 703
+" 	call add(g:pathogen_disabled, 'YouCompleteMe')
+"     endif
+"     execute pathogen#infect()
+" endif
+
+" ======================================================================
 " setup vundle
 " ======================================================================
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
 
-" To disable a plugin, add it's bundle name to the following list
-let g:pathogen_disabled = []
+Plugin 'gmarik/Vundle.vim'
 
-" call add(g:pathogen_disabled, 'vim-airline')
-if has('win32')
-    call add(g:pathogen_disabled, 'YouCompleteMe')
-    execute pathogen#infect('~\vimfiles\bundle\{}')
-else
-    if !has('python') || v:version < 703
-	call add(g:pathogen_disabled, 'YouCompleteMe')
-    endif
-    execute pathogen#infect()
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'bling/vim-airline'
+Plugin 'bogado/file-line'
+Plugin 'fatih/vim-go'
+Plugin 'fswitch'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mhinz/vim-startify'
+Plugin 'paranoida/vim-airlineish'
+Plugin 'scrooloose/nerdtree'
+Plugin 'skammer/vim-css-color'
+Plugin 'ton/vim-bufsurf'
+Plugin 'vim-maximizer'
+Plugin 'vim-scripts/YankRing.vim'
+Plugin 'vim-scripts/bufkill.vim'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'scrooloose/syntastic'
+
+if !has('win32')
+	" AutoTag will cause gvim crash in Windows
+	Plugin 'vim-scripts/AutoTag'
+
+	" check whether we can enable YCM
+	if has('python') && v:version > 703
+		Plugin 'Valloric/YouCompleteMe'
+	endif
 endif
 
-" set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle "fholgado/minibufexpl.vim"
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'bling/vim-airline'
-Bundle 'bogado/file-line'
-Bundle 'fatih/vim-go'
-Bundle 'fswitch'
-Bundle 'jlanzarotta/bufexplorer'
-Bundle 'kien/ctrlp.vim'
-" Bundle 'mhinz/vim-startify'
-Bundle 'paranoida/vim-airlineish'
-Bundle 'scrooloose/nerdtree'
-Bundle 'skammer/vim-css-color'
-Bundle 'ton/vim-bufsurf'
-Bundle 'vim-maximizer'
-Bundle 'vim-scripts/AutoTag'
-Bundle 'vim-scripts/YankRing.vim'
-Bundle 'vim-scripts/bufkill.vim'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'scrooloose/syntastic'
+call vundle#end()
 
 "......................................
 filetype plugin indent on
