@@ -559,7 +559,7 @@ let Tlist_Close_On_Select = 0
 let Tlist_Compact_Format = 1
 let Tlist_Use_Right_Window = 0
 noremap <F2> :TlistToggle<CR>
-
+inoremap <F2> <ESC>:TlistToggle<CR>
 
 " ======================================================================
 " vim-airline
