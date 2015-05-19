@@ -1,3 +1,6 @@
+[submodule "bundle/AutoTag"]
+	path = bundle/AutoTag
+	url  = https://github.com/vim-scripts/AutoTag.git
 [submodule "bundle/bufexplorer"]
 	path = bundle/bufexplorer
 	url  = https://github.com/jlanzarotta/bufexplorer.git
@@ -46,9 +49,15 @@
 [submodule "bundle/vim-css-color"]
 	path = bundle/vim-css-color
 	url  = https://github.com/skammer/vim-css-color.git
+[submodule "bundle/vim-flavored-markdown"]
+	path = bundle/vim-flavored-markdown
+	url  = https://github.com/jtratner/vim-flavored-markdown.git
 [submodule "bundle/vim-go"]
 	path = bundle/vim-go
 	url  = https://github.com/fatih/vim-go.git
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url  = https://github.com/tpope/vim-markdown.git
 [submodule "bundle/vim-maximizer"]
 	path = bundle/vim-maximizer
 	url  = https://github.com/vim-scripts/vim-maximizer.git
@@ -58,9 +67,12 @@
 [submodule "bundle/vundle"]
 	path = bundle/vundle
 	url  = https://github.com/gmarik/vundle.git
+[submodule "bundle/Vundle.vim"]
+	path = bundle/Vundle.vim
+	url  = https://github.com/gmarik/Vundle.vim.git
 [submodule "bundle/YankRing.vim"]
 	path = bundle/YankRing.vim
-	url  = https://github.com/vim-scripts/YankRing.vim
+	url  = https://github.com/vim-scripts/YankRing.vim.git
 [submodule "bundle/YouCompleteMe"]
 	path = bundle/YouCompleteMe
 	url  = https://github.com/Valloric/YouCompleteMe.git

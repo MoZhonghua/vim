@@ -373,6 +373,8 @@ Plugin 'vim-scripts/YankRing.vim'
 Plugin 'vim-scripts/bufkill.vim'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-markdown'
+Plugin 'jtratner/vim-flavored-markdown'
 
 if !has('win32')
 	" AutoTag will cause gvim crash in Windows
@@ -624,3 +626,13 @@ let g:startify_change_to_dir          = 0
 " ======================================================================
 " vim-go
 " ======================================================================
+
+
+" ======================================================================
+" vim-markdown && vim-flavored-markdown
+" ======================================================================
+augroup markdown
+    au!
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup END
+
