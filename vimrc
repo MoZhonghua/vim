@@ -398,6 +398,11 @@ nnoremap <leader>a <ESC>:FSHere<CR>
 inoremap  <F1> <ESC>:FSHere<CR>
 nnoremap  <F1> <ESC>:FSHere<CR>
 
+au! BufEnter *.cc let b:fswitchdst = 'h,hpp' | let b:fswitchlocs="."
+au! BufEnter *.cpp let b:fswitchdst = 'h,hpp' | let b:fswitchlocs="."
+au! BufEnter *.h let b:fswitchdst = 'cc,cpp'
+au! BufEnter *.hpp let b:fswitchdst = 'cc,cpp'
+
 " disable alternative file creation
 let fsnonewfiles=0
 
@@ -408,11 +413,13 @@ nnoremap <F4> :NERDTreeToggle<cr>
 imap <F4> <Esc>:NERDTreeToggle<cr>
 noremap <leader>c :NERDTreeFind<cr><c-w><c-p>
 
-" auto open NERDTree when start
-" autocmd VimEnter * NERDTree
-" wincmd w
-" move cursor from NERDTree to file
-" autocmd VimEnter * wincmd w
+if !has('win32') 
+	" auto open NERDTree when start
+	autocmd VimEnter * NERDTree
+	wincmd w
+	" move cursor from NERDTree to file
+	autocmd VimEnter * wincmd w
+endif
 
 " Check if NERDTree is open or active
 function! rc:isNERDTreeOpen()
