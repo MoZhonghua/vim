@@ -168,6 +168,16 @@ set updatetime=1000
 cnoremap <C-a>  <Home>
 cnoremap <C-e>  <End>
 
+
+" ======================================================================
+" highlight settings
+" ======================================================================
+" Put cursor on the word and press <F10> to get which HI group current word
+" belongs to
+map <leader>j :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+			\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+			\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 " highlight search configs
 set hlsearch
 set incsearch
@@ -654,3 +664,5 @@ let g:solarized_termcolors=16
 " Must set to 1, else highlighting text will have wired background color
 let g:solarized_termtrans = 1
 colorscheme solarized
+" NERDTree use CursorLine to identify current file
+hi CursorLine cterm=underline
