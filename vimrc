@@ -375,6 +375,7 @@ Plugin 'vim-scripts/taglist.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
+Plugin 'altercation/vim-colors-solarized'
 
 if !has('win32')
 	" AutoTag will cause gvim crash in Windows
@@ -643,3 +644,13 @@ augroup markdown
     au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
 
+
+" ======================================================================
+" altercation/vim-colors-solarized
+" ======================================================================
+syntax on
+set background=dark
+let g:solarized_termcolors=16
+" Must set to 1, else highlighting text will have wired background color
+let g:solarized_termtrans = 1
+colorscheme solarized
