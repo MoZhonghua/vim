@@ -24,6 +24,8 @@ set cindent
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+" :retab to replace existing tabs with space
+set expandtab
 set smartcase
 
 " tags
@@ -42,7 +44,7 @@ noremap <C-L> <C-W>l
 " make vim do not indent pasted text
 " you should only disable it temporarily when paste large text
 " else auto-indent function will not work
-set nopaste	
+set nopaste
 
 " expand %% to %:h in command mode
 " not work, some configs conflicts with this, but I don't know which
@@ -81,7 +83,7 @@ nnoremap k gk
 " match ErrorMsg '\%>120v.\+'
 
 if !has('win32')
-	" font and colorscheme
+    " font and colorscheme
     colorscheme desert
     set guifont=Monospace\ 11
 
@@ -104,8 +106,8 @@ else
     colorscheme desert
     set guifont=Consolas:h12:cANSI
 
-	" bind unamed register to system clipboard
-	" ref http://stackoverflow.com/questions/8757395/can-vim-use-the-system-clipboards-by-default
+        " bind unamed register to system clipboard
+        " ref http://stackoverflow.com/questions/8757395/can-vim-use-the-system-clipboards-by-default
     set clipboard+=unnamed,unnamedplus
 endif
 
@@ -175,8 +177,8 @@ cnoremap <C-e>  <End>
 " Put cursor on the word and press <F10> to get which HI group current word
 " belongs to
 map <leader>j :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-			\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-			\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+                        \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+                        \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " highlight search configs
 set hlsearch
@@ -206,20 +208,20 @@ endfunction
 function! ToggleList(bufname, pfx)
     let buflist = GetBufferList()
     for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
-	if bufwinnr(bufnum) != -1
-	    exec(a:pfx.'close')
-	    return
-	endif
+        if bufwinnr(bufnum) != -1
+            exec(a:pfx.'close')
+            return
+        endif
     endfor
     if a:pfx == 'l' && len(getloclist(0)) == 0
-	echohl ErrorMsg
-	echo "Location List is Empty."
-	return
+        echohl ErrorMsg
+        echo "Location List is Empty."
+        return
     endif
     let winnr = winnr()
     exec('botright '.a:pfx.'open')
     if winnr() != winnr
-	wincmd p
+        wincmd p
     endif
 endfunction
 
@@ -249,10 +251,10 @@ if has("cscope")
     set nocsverb
     " add any database in current directory
     if filereadable("cscope.out")
-	cs add cscope.out
-	" else add database pointed to by environment
+        cs add cscope.out
+        " else add database pointed to by environment
     elseif $CSCOPE_DB != ""
-	cs add $CSCOPE_DB
+        cs add $CSCOPE_DB
     endif
     set csverb
 endif
@@ -291,15 +293,15 @@ nnoremap <Leader>w :w<CR>
 
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
-	    \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-	    \gvy/<C-R><C-R>=substitute(
-	    \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-	    \gV:call setreg('"', old_reg, old_regtype)<CR>
+            \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+            \gvy/<C-R><C-R>=substitute(
+            \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+            \gV:call setreg('"', old_reg, old_regtype)<CR>
 vnoremap <silent> # :<C-U>
-	    \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-	    \gvy?<C-R><C-R>=substitute(
-	    \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-	    \gV:call setreg('"', old_reg, old_regtype)<CR>
+            \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+            \gvy?<C-R><C-R>=substitute(
+            \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+            \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 " ======================================================================
 " Qgrep: a custom grep tool
@@ -311,7 +313,7 @@ function! Qgrep(str, mark)
     echo l:cmd
     " create a global mark, so we can jump back
     if a:mark != ""
-	execute "mark " . a:mark
+        execute "mark " . a:mark
     endif
     :cexpr system(l:cmd)
 endfunction
@@ -329,9 +331,9 @@ command! -nargs=+ -complete=command Qgrep call Qgrep1(<q-args>)
 " ======================================================================
 " vimgdb
 if has("gdb")
-    set previewheight=12		" set gdb window initial height
-    run macros/gdb_mappings.vim	" source key mappings listed in this document
-    set asm=0				" don't show any assembly stuff
+    set previewheight=12                " set gdb window initial height
+    run macros/gdb_mappings.vim " source key mappings listed in this document
+    set asm=0                           " don't show any assembly stuff
 endif
 
 nnoremap <F12> :set iskeyword+=45,46,62<CR>
@@ -350,7 +352,7 @@ nnoremap <S-F12> :set iskeyword-=45,46,62<CR>
 "     execute pathogen#infect('~\.vim\bundle\{}')
 " else
 "     if !has('python') || v:version < 703
-" 	call add(g:pathogen_disabled, 'YouCompleteMe')
+"       call add(g:pathogen_disabled, 'YouCompleteMe')
 "     endif
 "     execute pathogen#infect()
 " endif
@@ -388,13 +390,13 @@ Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'altercation/vim-colors-solarized'
 
 if !has('win32')
-	" AutoTag will cause gvim crash in Windows
-	Plugin 'vim-scripts/AutoTag'
+        " AutoTag will cause gvim crash in Windows
+        Plugin 'vim-scripts/AutoTag'
 
-	" check whether we can enable YCM
-	if has('python') && v:version > 703
-		Plugin 'Valloric/YouCompleteMe'
-	endif
+        " check whether we can enable YCM
+        if has('python') && v:version > 703
+                Plugin 'Valloric/YouCompleteMe'
+        endif
 endif
 
 call vundle#end()
@@ -425,11 +427,11 @@ imap <F4> <Esc>:NERDTreeToggle<cr>
 noremap <leader>c :NERDTreeFind<cr><c-w><c-p>
 
 if !has('win32') 
-	" auto open NERDTree when start
-	autocmd VimEnter * NERDTree
-	wincmd w
-	" move cursor from NERDTree to file
-	autocmd VimEnter * wincmd w
+        " auto open NERDTree when start
+        autocmd VimEnter * NERDTree
+        wincmd w
+        " move cursor from NERDTree to file
+        autocmd VimEnter * wincmd w
 endif
 
 " Check if NERDTree is open or active
@@ -446,14 +448,14 @@ function! rc:isInterestingFile()
     let l:fname = expand('%')
     let l:extension =  expand('%:e')
     if l:fname ==? 'makefile' || l:fname ==? 'configure' 
-		\ || l:fname ==? 'CMakeLists.txt'
-	return 1
+                \ || l:fname ==? 'CMakeLists.txt'
+        return 1
     endif
     if l:extension ==? 'c' || l:extension ==? 'h' 
-		\ || l:extension ==? 'am' || l:extension ==? 'cpp' 
-		\ || l:extension ==? 'cc' || l:extension ==? 'sh'
-		\ || l:extension ==? 'proto'
-	return 1
+                \ || l:extension ==? 'am' || l:extension ==? 'cpp' 
+                \ || l:extension ==? 'cc' || l:extension ==? 'sh'
+                \ || l:extension ==? 'proto'
+        return 1
     endif 
     return 0
 endfunction
@@ -464,16 +466,16 @@ let g:sync_tree_auto_enable = 1
 " file, and we're not in vimdiff
 function! rc:syncTree()
     if g:sync_tree_auto_enable == 0
-	return
+        return
     endif
     if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-	if rc:isInterestingFile() && rc:isFileInsideCurrentDir()
-	    NERDTreeFind
-	    execute "normal! zz"
-	    if expand('%') =~ 'NERD_tree'
-		wincmd p
-	    endif
-	endif
+        if rc:isInterestingFile() && rc:isFileInsideCurrentDir()
+            NERDTreeFind
+            execute "normal! zz"
+            if expand('%') =~ 'NERD_tree'
+                wincmd p
+            endif
+        endif
     endif
 endfunction
 
@@ -496,10 +498,10 @@ let NERDTreeShowBookmarks = 1
 let g:ctrlp_map = '<c-f>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = {
-	    \ 'dir': '\v[\/]\.(git|hg|svn)$',
-	    \ 'file': '\v\.(o|ko|so|obj|dll|exe|la|status)$',
-	    \ 'link': 'some_bad_symbolic_links',
-	    \ }
+            \ 'dir': '\v[\/]\.(git|hg|svn)$',
+            \ 'file': '\v\.(o|ko|so|obj|dll|exe|la|status)$',
+            \ 'link': 'some_bad_symbolic_links',
+            \ }
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_files = 0
@@ -666,5 +668,5 @@ let g:solarized_termtrans = 1
 colorscheme solarized
 " NERDTree use CursorLine to identify current file
 " 8 is invalid color index: palette with 16 colors, 8 fg and 8 bg, so valid
-"			    index is [0-7]
+"                           index is [0-7]
 hi CursorLine cterm=underline ctermbg=8 gui=underline guibg=8
