@@ -665,4 +665,6 @@ let g:solarized_termcolors=16
 let g:solarized_termtrans = 1
 colorscheme solarized
 " NERDTree use CursorLine to identify current file
-hi CursorLine cterm=underline
+" 8 is invalid color index: palette with 16 colors, 8 fg and 8 bg, so valid
+"			    index is [0-7]
+hi CursorLine cterm=underline ctermbg=8 gui=underline guibg=8
