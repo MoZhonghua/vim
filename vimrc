@@ -21,6 +21,7 @@ syntax on
 set number
 set ruler
 set cindent
+set autoindent
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -147,7 +148,9 @@ endif
 
 " use :e! to discard undo history when you get a known good point, for example,
 " after you commit changes.
-set undoreload=0
+if v:version >= 703
+    set undoreload=0
+endif
 
 set fileencodings=utf-8,ucs-bom,gbk,default,latin1
 
