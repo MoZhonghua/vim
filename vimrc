@@ -411,10 +411,11 @@ nnoremap <leader>a <ESC>:FSHere<CR>
 inoremap  <F1> <ESC>:FSHere<CR>
 nnoremap  <F1> <ESC>:FSHere<CR>
 
-au! BufEnter *.cc let b:fswitchdst = 'h,hpp' | let b:fswitchlocs="."
-au! BufEnter *.cpp let b:fswitchdst = 'h,hpp' | let b:fswitchlocs="."
-au! BufEnter *.h let b:fswitchdst = 'cc,cpp'
-au! BufEnter *.hpp let b:fswitchdst = 'cc,cpp'
+au! BufEnter *.c    let b:fswitchdst = 'h'          | let b:fswitchlocs="."
+au! BufEnter *.cc   let b:fswitchdst = 'h,hpp'      | let b:fswitchlocs="."
+au! BufEnter *.cpp  let b:fswitchdst = 'h,hpp'      | let b:fswitchlocs="."
+au! BufEnter *.h    let b:fswitchdst = 'c,cc,cpp'   | let b:fswitchlocs="."
+au! BufEnter *.hpp  let b:fswitchdst = 'cc,cpp'     | let b:fswitchlocs="."
 
 " disable alternative file creation
 let fsnonewfiles=0
@@ -669,4 +670,4 @@ colorscheme solarized
 " NERDTree use CursorLine to identify current file
 " 8 is invalid color index: palette with 16 colors, 8 fg and 8 bg, so valid
 "                           index is [0-7]
-hi CursorLine cterm=underline ctermbg=8 gui=underline guibg=8
+hi CursorLine cterm=underline gui=underline
