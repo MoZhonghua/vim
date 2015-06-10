@@ -21,9 +21,12 @@ syntax on
 set number
 set ruler
 set cindent
+set autoindent
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+" :retab to replace existing tabs with space
+set expandtab
 set smartcase
 
 " tags
@@ -42,7 +45,7 @@ noremap <C-L> <C-W>l
 " make vim do not indent pasted text
 " you should only disable it temporarily when paste large text
 " else auto-indent function will not work
-set nopaste	
+set nopaste
 
 " expand %% to %:h in command mode
 " not work, some configs conflicts with this, but I don't know which
@@ -81,7 +84,7 @@ nnoremap k gk
 " match ErrorMsg '\%>120v.\+'
 
 if !has('win32')
-	" font and colorscheme
+    " font and colorscheme
     colorscheme desert
     set guifont=Monospace\ 11
 
@@ -104,8 +107,8 @@ else
     colorscheme desert
     set guifont=Consolas:h12:cANSI
 
-	" bind unamed register to system clipboard
-	" ref http://stackoverflow.com/questions/8757395/can-vim-use-the-system-clipboards-by-default
+        " bind unamed register to system clipboard
+        " ref http://stackoverflow.com/questions/8757395/can-vim-use-the-system-clipboards-by-default
     set clipboard+=unnamed,unnamedplus
 endif
 
@@ -145,7 +148,9 @@ endif
 
 " use :e! to discard undo history when you get a known good point, for example,
 " after you commit changes.
-set undoreload=0
+if v:version >= 703
+    set undoreload=0
+endif
 
 set fileencodings=utf-8,ucs-bom,gbk,default,latin1
 
@@ -167,6 +172,16 @@ set updatetime=1000
 " C-u delete whole  line
 cnoremap <C-a>  <Home>
 cnoremap <C-e>  <End>
+
+
+" ======================================================================
+" highlight settings
+" ======================================================================
+" Put cursor on the word and press <F10> to get which HI group current word
+" belongs to
+map <leader>j :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+                        \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+                        \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " highlight search configs
 set hlsearch
@@ -196,20 +211,20 @@ endfunction
 function! ToggleList(bufname, pfx)
     let buflist = GetBufferList()
     for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
-	if bufwinnr(bufnum) != -1
-	    exec(a:pfx.'close')
-	    return
-	endif
+        if bufwinnr(bufnum) != -1
+            exec(a:pfx.'close')
+            return
+        endif
     endfor
     if a:pfx == 'l' && len(getloclist(0)) == 0
-	echohl ErrorMsg
-	echo "Location List is Empty."
-	return
+        echohl ErrorMsg
+        echo "Location List is Empty."
+        return
     endif
     let winnr = winnr()
     exec('botright '.a:pfx.'open')
     if winnr() != winnr
-	wincmd p
+        wincmd p
     endif
 endfunction
 
@@ -239,10 +254,10 @@ if has("cscope")
     set nocsverb
     " add any database in current directory
     if filereadable("cscope.out")
-	cs add cscope.out
-	" else add database pointed to by environment
+        cs add cscope.out
+        " else add database pointed to by environment
     elseif $CSCOPE_DB != ""
-	cs add $CSCOPE_DB
+        cs add $CSCOPE_DB
     endif
     set csverb
 endif
@@ -281,15 +296,15 @@ nnoremap <Leader>w :w<CR>
 
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
-	    \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-	    \gvy/<C-R><C-R>=substitute(
-	    \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-	    \gV:call setreg('"', old_reg, old_regtype)<CR>
+            \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+            \gvy/<C-R><C-R>=substitute(
+            \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+            \gV:call setreg('"', old_reg, old_regtype)<CR>
 vnoremap <silent> # :<C-U>
-	    \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-	    \gvy?<C-R><C-R>=substitute(
-	    \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-	    \gV:call setreg('"', old_reg, old_regtype)<CR>
+            \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+            \gvy?<C-R><C-R>=substitute(
+            \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+            \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 " ======================================================================
 " Qgrep: a custom grep tool
@@ -301,7 +316,7 @@ function! Qgrep(str, mark)
     echo l:cmd
     " create a global mark, so we can jump back
     if a:mark != ""
-	execute "mark " . a:mark
+        execute "mark " . a:mark
     endif
     :cexpr system(l:cmd)
 endfunction
@@ -319,13 +334,31 @@ command! -nargs=+ -complete=command Qgrep call Qgrep1(<q-args>)
 " ======================================================================
 " vimgdb
 if has("gdb")
-    set previewheight=12		" set gdb window initial height
-    run macros/gdb_mappings.vim	" source key mappings listed in this document
-    set asm=0				" don't show any assembly stuff
+    set previewheight=12                " set gdb window initial height
+    run macros/gdb_mappings.vim " source key mappings listed in this document
+    set asm=0                           " don't show any assembly stuff
 endif
 
 nnoremap <F12> :set iskeyword+=45,46,62<CR>
 nnoremap <S-F12> :set iskeyword-=45,46,62<CR>
+
+" ======================================================================
+" Pathogen - deprecatd, use vundle to manage plugins
+" ======================================================================
+" To disable a plugin, add it's bundle name to the following list
+" let g:pathogen_disabled = []
+
+" call add(g:pathogen_disabled, 'vim-airline')
+" if has('win32')
+"     call add(g:pathogen_disabled, 'YouCompleteMe')
+"     call add(g:pathogen_disabled, 'vim-autotag')
+"     execute pathogen#infect('~\.vim\bundle\{}')
+" else
+"     if !has('python') || v:version < 703
+"       call add(g:pathogen_disabled, 'YouCompleteMe')
+"     endif
+"     execute pathogen#infect()
+" endif
 
 " ======================================================================
 " setup vundle
@@ -333,44 +366,43 @@ nnoremap <S-F12> :set iskeyword-=45,46,62<CR>
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+set rtp+=~/.vim/bundle/vundle/
+call vundle#begin()
 
-" To disable a plugin, add it's bundle name to the following list
-let g:pathogen_disabled = []
+Plugin 'gmarik/Vundle.vim'
 
-" call add(g:pathogen_disabled, 'vim-airline')
-if has('win32')
-	call add(g:pathogen_disabled, 'vim-autotag')
-	call add(g:pathogen_disabled, 'YouCompleteMe')
-    execute pathogen#infect('~\vimfiles\bundle\{}')
-else
-    if !has('python') || v:version < 703
-	call add(g:pathogen_disabled, 'YouCompleteMe')
-    endif
-    execute pathogen#infect()
+Plugin 'fholgado/minibufexpl.vim'
+Plugin 'bling/vim-airline'
+Plugin 'bogado/file-line'
+Plugin 'fatih/vim-go'
+Plugin 'fswitch'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mhinz/vim-startify'
+Plugin 'paranoida/vim-airlineish'
+Plugin 'scrooloose/nerdtree'
+Plugin 'skammer/vim-css-color'
+Plugin 'ton/vim-bufsurf'
+Plugin 'vim-maximizer'
+Plugin 'vim-scripts/YankRing.vim'
+Plugin 'vim-scripts/bufkill.vim'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-markdown'
+Plugin 'jtratner/vim-flavored-markdown'
+Plugin 'altercation/vim-colors-solarized'
+
+if !has('win32')
+        " AutoTag will cause gvim crash in Windows
+        Plugin 'vim-scripts/AutoTag'
+
+        " check whether we can enable YCM
+        if has('python') && v:version > 703
+                Plugin 'Valloric/YouCompleteMe'
+        endif
 endif
 
-" set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" Bundle "fholgado/minibufexpl.vim"
-" Bundle 'Valloric/YouCompleteMe'
-" Bundle 'bling/vim-airline'
-" Bundle 'bogado/file-line'
-" Bundle 'fatih/vim-go'
-" Bundle 'fswitch'
-" Bundle 'jlanzarotta/bufexplorer'
-" Bundle 'kien/ctrlp.vim'
-" Bundle 'mhinz/vim-startify'
-" Bundle 'paranoida/vim-airlineish'
-" Bundle 'scrooloose/nerdtree'
-" Bundle 'skammer/vim-css-color'
-" Bundle 'ton/vim-bufsurf'
-" Bundle 'vim-maximizer'
-" Bundle 'vim-scripts/AutoTag'
-" Bundle 'vim-scripts/YankRing.vim'
-" Bundle 'vim-scripts/bufkill.vim'
-" Bundle 'vim-scripts/taglist.vim'
-" Bundle 'scrooloose/syntastic'
+call vundle#end()
 
 "......................................
 filetype plugin indent on
@@ -382,6 +414,12 @@ nnoremap <leader>a <ESC>:FSHere<CR>
 inoremap  <F1> <ESC>:FSHere<CR>
 nnoremap  <F1> <ESC>:FSHere<CR>
 
+au! BufEnter *.c    let b:fswitchdst = 'h'          | let b:fswitchlocs="."
+au! BufEnter *.cc   let b:fswitchdst = 'h,hpp'      | let b:fswitchlocs="."
+au! BufEnter *.cpp  let b:fswitchdst = 'h,hpp'      | let b:fswitchlocs="."
+au! BufEnter *.h    let b:fswitchdst = 'c,cc,cpp'   | let b:fswitchlocs="."
+au! BufEnter *.hpp  let b:fswitchdst = 'cc,cpp'     | let b:fswitchlocs="."
+
 " disable alternative file creation
 let fsnonewfiles=0
 
@@ -392,11 +430,13 @@ nnoremap <F4> :NERDTreeToggle<cr>
 imap <F4> <Esc>:NERDTreeToggle<cr>
 noremap <leader>c :NERDTreeFind<cr><c-w><c-p>
 
-" auto open NERDTree when start
-" autocmd VimEnter * NERDTree
-" wincmd w
-" move cursor from NERDTree to file
-" autocmd VimEnter * wincmd w
+if !has('win32') 
+        " auto open NERDTree when start
+        autocmd VimEnter * NERDTree
+        wincmd w
+        " move cursor from NERDTree to file
+        autocmd VimEnter * wincmd w
+endif
 
 " Check if NERDTree is open or active
 function! rc:isNERDTreeOpen()
@@ -412,14 +452,14 @@ function! rc:isInterestingFile()
     let l:fname = expand('%')
     let l:extension =  expand('%:e')
     if l:fname ==? 'makefile' || l:fname ==? 'configure' 
-		\ || l:fname ==? 'CMakeLists.txt'
-	return 1
+                \ || l:fname ==? 'CMakeLists.txt'
+        return 1
     endif
     if l:extension ==? 'c' || l:extension ==? 'h' 
-		\ || l:extension ==? 'am' || l:extension ==? 'cpp' 
-		\ || l:extension ==? 'cc' || l:extension ==? 'sh'
-		\ || l:extension ==? 'proto'
-	return 1
+                \ || l:extension ==? 'am' || l:extension ==? 'cpp' 
+                \ || l:extension ==? 'cc' || l:extension ==? 'sh'
+                \ || l:extension ==? 'proto'
+        return 1
     endif 
     return 0
 endfunction
@@ -430,16 +470,16 @@ let g:sync_tree_auto_enable = 1
 " file, and we're not in vimdiff
 function! rc:syncTree()
     if g:sync_tree_auto_enable == 0
-	return
+        return
     endif
     if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-	if rc:isInterestingFile() && rc:isFileInsideCurrentDir()
-	    NERDTreeFind
-	    execute "normal! zz"
-	    if expand('%') =~ 'NERD_tree'
-		wincmd p
-	    endif
-	endif
+        if rc:isInterestingFile() && rc:isFileInsideCurrentDir()
+            NERDTreeFind
+            execute "normal! zz"
+            if expand('%') =~ 'NERD_tree'
+                wincmd p
+            endif
+        endif
     endif
 endfunction
 
@@ -462,10 +502,10 @@ let NERDTreeShowBookmarks = 1
 let g:ctrlp_map = '<c-f>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = {
-	    \ 'dir': '\v[\/]\.(git|hg|svn)$',
-	    \ 'file': '\v\.(o|ko|so|obj|dll|exe|la|status)$',
-	    \ 'link': 'some_bad_symbolic_links',
-	    \ }
+            \ 'dir': '\v[\/]\.(git|hg|svn)$',
+            \ 'file': '\v\.(o|ko|so|obj|dll|exe|la|status)$',
+            \ 'link': 'some_bad_symbolic_links',
+            \ }
 let g:ctrlp_working_path_mode = 'rw'
 let g:ctrlp_match_window_bottom=1
 let g:ctrlp_max_files = 0
@@ -536,7 +576,7 @@ let Tlist_Close_On_Select = 0
 let Tlist_Compact_Format = 1
 let Tlist_Use_Right_Window = 0
 noremap <F2> :TlistToggle<CR>
-
+inoremap <F2> <ESC>:TlistToggle<CR>
 
 " ======================================================================
 " vim-airline
@@ -610,3 +650,29 @@ let g:startify_change_to_dir          = 0
 " ======================================================================
 " vim-go
 " ======================================================================
+
+
+" ======================================================================
+" vim-markdown && vim-flavored-markdown
+" ======================================================================
+augroup markdown
+    au!
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup END
+
+
+" ======================================================================
+" altercation/vim-colors-solarized
+" ======================================================================
+if !has('win32')
+    syntax on
+    set background=dark
+    let g:solarized_termcolors=16
+    " Must set to 1, else highlighting text will have wired background color
+    let g:solarized_termtrans = 1
+    colorscheme solarized
+    " NERDTree use CursorLine to identify current file
+    " 8 is invalid color index: palette with 16 colors, 8 fg and 8 bg, 
+    " so valid index is [0-7]
+    hi CursorLine cterm=underline gui=underline
+endif
