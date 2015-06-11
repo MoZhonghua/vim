@@ -664,13 +664,15 @@ augroup END
 " ======================================================================
 " altercation/vim-colors-solarized
 " ======================================================================
-syntax on
-set background=dark
-let g:solarized_termcolors=16
-" Must set to 1, else highlighting text will have wired background color
-let g:solarized_termtrans = 1
-colorscheme solarized
-" NERDTree use CursorLine to identify current file
-" 8 is invalid color index: palette with 16 colors, 8 fg and 8 bg, so valid
-"                           index is [0-7]
-hi CursorLine cterm=underline gui=underline
+if !has('win32')
+    syntax on
+    set background=dark
+    let g:solarized_termcolors=16
+    " Must set to 1, else highlighting text will have wired background color
+    let g:solarized_termtrans = 1
+    colorscheme solarized
+    " NERDTree use CursorLine to identify current file
+    " 8 is invalid color index: palette with 16 colors, 8 fg and 8 bg, 
+    " so valid index is [0-7]
+    hi CursorLine cterm=underline gui=underline
+endif
