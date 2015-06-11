@@ -20,7 +20,7 @@ let g:mapleader = ","
 syntax on
 set number
 set ruler
-set cindent
+" set cindent
 set autoindent
 set tabstop=4
 set softtabstop=4
