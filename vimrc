@@ -55,6 +55,9 @@ set nopaste
 set timeoutlen=1000
 set ttimeoutlen=0
 
+" I never use Ex Mode, and it is very annoying
+noremap Q <Nop>
+
 " use \v for very magic and \V for very nomagic
 " default is magic mode, that is:
 "  . * [ ]     special meaning but
