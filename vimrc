@@ -381,7 +381,6 @@ Plugin 'fatih/vim-go'
 Plugin 'fswitch'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'kien/ctrlp.vim'
-Plugin 'mhinz/vim-startify'
 Plugin 'paranoida/vim-airlineish'
 Plugin 'scrooloose/nerdtree'
 Plugin 'skammer/vim-css-color'
@@ -398,6 +397,9 @@ Plugin 'altercation/vim-colors-solarized'
 if !has('win32')
         " AutoTag will cause gvim crash in Windows
         Plugin 'vim-scripts/AutoTag'
+
+        " starify may block vim in win32
+        Plugin 'mhinz/vim-startify'
 
         " check whether we can enable YCM
         if has('python') && v:version > 703
