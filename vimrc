@@ -393,6 +393,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'fidian/hexmode'
 
 if !has('win32')
         " AutoTag will cause gvim crash in Windows
@@ -681,3 +682,6 @@ if !has('win32')
     " so valid index is [0-7]
     hi CursorLine cterm=underline gui=underline
 endif
+
+colorscheme desert
+set background=dark
