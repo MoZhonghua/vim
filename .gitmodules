@@ -19,12 +19,18 @@
 [submodule "bundle/hexmode"]
 	path = bundle/hexmode
 	url  = https://github.com/fidian/hexmode.git
+[submodule "bundle/md-vim"]
+	path = bundle/md-vim
+	url  = https://github.com/hughbien/md-vim.git
 [submodule "bundle/minibufexpl.vim"]
 	path = bundle/minibufexpl.vim
 	url  = https://github.com/fholgado/minibufexpl.vim.git
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url  = https://github.com/scrooloose/nerdtree.git
+[submodule "bundle/SrcExpl"]
+	path = bundle/SrcExpl
+	url  = https://github.com/wesleyche/SrcExpl.git
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url  = https://github.com/scrooloose/syntastic.git
@@ -37,6 +43,9 @@
 [submodule "bundle/vim-airlineish"]
 	path = bundle/vim-airlineish
 	url  = https://github.com/paranoida/vim-airlineish.git
+[submodule "bundle/vim-autotag"]
+	path = bundle/vim-autotag
+	url  = https://github.com/craigemery/vim-autotag.git
 [submodule "bundle/vim-bufsurf"]
 	path = bundle/vim-bufsurf
 	url  = https://github.com/ton/vim-bufsurf.git
