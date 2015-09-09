@@ -378,7 +378,7 @@ Plugin 'fholgado/minibufexpl.vim'
 Plugin 'bling/vim-airline'
 Plugin 'bogado/file-line'
 Plugin 'fatih/vim-go'
-Plugin 'nsf/gocode'
+" Plugin 'nsf/gocode'
 Plugin 'fswitch'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'kien/ctrlp.vim'
@@ -667,6 +667,10 @@ augroup markdown
     au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
 
+" ======================================================================
+" vim-go
+" ======================================================================
+let g:go_fmt_autosave = 0
 
 " ======================================================================
 " altercation/vim-colors-solarized
