@@ -390,6 +390,7 @@ Plugin 'vim-maximizer'
 Plugin 'vim-scripts/YankRing.vim'
 Plugin 'vim-scripts/bufkill.vim'
 Plugin 'vim-scripts/taglist.vim'
+Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
@@ -582,8 +583,8 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_Close_On_Select = 0
 let Tlist_Compact_Format = 1
 let Tlist_Use_Right_Window = 0
-noremap <F2> :TlistToggle<CR>
-inoremap <F2> <ESC>:TlistToggle<CR>
+" noremap <F2> :TlistToggle<CR>
+" inoremap <F2> <ESC>:TlistToggle<CR>
 
 " ======================================================================
 " vim-airline
@@ -671,6 +672,42 @@ augroup END
 " vim-go
 " ======================================================================
 let g:go_fmt_autosave = 0
+
+
+" ======================================================================
+" tagbar && gotags
+" ======================================================================
+let g:tagbar_left = 1
+noremap <F2> :TagbarToggle<CR>
+inoremap <F2> <ESC>:TagbarToggle<CR>
+
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " ======================================================================
 " altercation/vim-colors-solarized
