@@ -501,7 +501,7 @@ let NERDTreeIgnore=['\.o$', '\.ko$', '\.symvers$', '\.order$', '\.mod.c$', '\.sw
 " let NERDTreeMinimalUI=1
 let NERDTreeQuitOnOpen=0
 let NERDTreeWinPos = 'right'
-let NERDTreeWinSize = 31
+let NERDTreeWinSize = 25
 let NERDTreeShowBookmarks = 1
 
 " ======================================================================
@@ -678,6 +678,7 @@ let g:go_fmt_autosave = 0
 " tagbar && gotags
 " ======================================================================
 let g:tagbar_left = 1
+let g:tagbar_width = 25
 noremap <F2> :TagbarToggle<CR>
 inoremap <F2> <ESC>:TagbarToggle<CR>
 
