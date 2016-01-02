@@ -484,7 +484,10 @@ function! rc:syncTree()
 endfunction
 
 " Highlight currently open buffer in NERDTree
-autocmd BufEnter * call rc:syncTree()
+if !has('win32')
+    " This will hang gvim for a long time
+    autocmd BufEnter * call rc:syncTree()
+endif
 
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
