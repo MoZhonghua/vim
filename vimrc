@@ -393,7 +393,7 @@ Plugin 'vim-scripts/taglist.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-markdown'
-Plugin 'jtratner/vim-flavored-markdown'
+" Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'fidian/hexmode'
 
