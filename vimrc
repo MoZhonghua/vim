@@ -369,10 +369,8 @@ nnoremap <S-F12> :set iskeyword-=45,46,62<CR>
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-set rtp+=~/.vim/bundle/Vundle.vim/
+set rtp+=~/.vim/Vundle.vim/
 call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
 
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'bling/vim-airline'
