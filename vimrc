@@ -395,6 +395,7 @@ Plugin 'tpope/vim-markdown'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'fidian/hexmode'
 
+
 if !has('win32')
         " AutoTag will cause gvim crash in Windows
         Plugin 'vim-scripts/AutoTag'
@@ -404,7 +405,7 @@ if !has('win32')
 
         " check whether we can enable YCM
         if has('python') && v:version > 703
-                Plugin 'Valloric/YouCompleteMe'
+                Plugin 'Valloric/YouCompleteMe', {'pinned': 1}
         endif
 endif
 
