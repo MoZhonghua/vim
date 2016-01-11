@@ -28,6 +28,7 @@ set shiftwidth=4
 " :retab to replace existing tabs with space
 set expandtab
 set smartcase
+set formatoptions+=m
 
 " tags
 set tags=./tags;../tags;../../tags;../../../tags;../../../../tags;../../../../../tags
