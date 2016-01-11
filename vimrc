@@ -122,7 +122,7 @@ set backspace=indent,eol,start
 " F8 to make
 inoremap <F8> <ESC>:make<CR>
 nnoremap <F8> :make<CR>
-" <C-F8> to update tags of current file, :pwd should be where old tags 
+" <C-F8> to update tags of current file, :pwd should be where old tags
 " file locates in
 nnoremap <C-F8> :!ctags -a %<CR>
 
@@ -130,8 +130,8 @@ nnoremap <C-F8> :!ctags -a %<CR>
 nnoremap zt ztkj
 nnoremap zb zbjk
 
-" A longer line will be broken after white space to get this width. A zero value 
-" disables this. 
+" A longer line will be broken after white space to get this width. A zero value
+" disables this.
 " ref :help textwidth
 set textwidth=72
 
@@ -438,7 +438,7 @@ nnoremap <F4> :NERDTreeToggle<cr>
 imap <F4> <Esc>:NERDTreeToggle<cr>
 noremap <leader>c :NERDTreeFind<cr><c-w><c-p>
 
-if !has('win32') 
+if !has('win32')
         " auto open NERDTree when start
         autocmd VimEnter * NERDTree
         wincmd w
@@ -459,16 +459,16 @@ endfunction
 function! rc:isInterestingFile()
     let l:fname = expand('%')
     let l:extension =  expand('%:e')
-    if l:fname ==? 'makefile' || l:fname ==? 'configure' 
+    if l:fname ==? 'makefile' || l:fname ==? 'configure'
                 \ || l:fname ==? 'CMakeLists.txt'
         return 1
     endif
-    if l:extension ==? 'c' || l:extension ==? 'h' 
-                \ || l:extension ==? 'am' || l:extension ==? 'cpp' 
+    if l:extension ==? 'c' || l:extension ==? 'h'
+                \ || l:extension ==? 'am' || l:extension ==? 'cpp'
                 \ || l:extension ==? 'cc' || l:extension ==? 'sh'
                 \ || l:extension ==? 'proto'
         return 1
-    endif 
+    endif
     return 0
 endfunction
 
@@ -724,7 +724,7 @@ if !has('win32')
     let g:solarized_termtrans = 1
     colorscheme solarized
     " NERDTree use CursorLine to identify current file
-    " 8 is invalid color index: palette with 16 colors, 8 fg and 8 bg, 
+    " 8 is invalid color index: palette with 16 colors, 8 fg and 8 bg,
     " so valid index is [0-7]
     hi CursorLine cterm=underline gui=underline
 endif
