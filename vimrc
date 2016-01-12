@@ -395,7 +395,7 @@ Plugin 'tpope/vim-markdown'
 " Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'fidian/hexmode'
-
+Plugin 'rhysd/vim-clang-format'
 
 if !has('win32')
         " AutoTag will cause gvim crash in Windows
@@ -731,3 +731,9 @@ endif
 
 colorscheme desert
 set background=dark
+
+" ======================================================================
+" rhysd/vim-clang-format
+" ======================================================================
+let g:clang_format#code_style = "google"
+noremap <leader>f :ClangFormat<CR>
