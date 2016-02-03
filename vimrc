@@ -423,7 +423,7 @@ if !has('win32')
     Plugin 'mhinz/vim-startify'
 
     " check whether we can enable YCM
-    if has('python') && v:version > 703
+    if has('clang') && has('python') && v:version > 703
         Plugin 'Valloric/YouCompleteMe', {'pinned': 1}
     endif
 endif
