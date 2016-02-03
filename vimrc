@@ -28,7 +28,7 @@ set shiftwidth=4
 " :retab to replace existing tabs with space
 set expandtab
 set smartcase
-set formatoptions+=m
+set formatoptions+=tcqmM
 
 " tags
 set tags=./tags;../tags;../../tags;../../../tags;../../../../tags;../../../../../tags
@@ -111,8 +111,8 @@ else
     colorscheme desert
     set guifont=Consolas:h12:cANSI
 
-        " bind unamed register to system clipboard
-        " ref http://stackoverflow.com/questions/8757395/can-vim-use-the-system-clipboards-by-default
+    " bind unamed register to system clipboard
+    " ref http://stackoverflow.com/questions/8757395/can-vim-use-the-system-clipboards-by-default
     set clipboard+=unnamed,unnamedplus
 endif
 
@@ -177,15 +177,14 @@ set updatetime=1000
 cnoremap <C-a>  <Home>
 cnoremap <C-e>  <End>
 
-
 " ======================================================================
 " highlight settings
 " ======================================================================
 " Put cursor on the word and press <F10> to get which HI group current word
 " belongs to
 map <leader>j :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-                        \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-                        \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+            \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+            \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " highlight search configs
 set hlsearch
@@ -311,11 +310,32 @@ vnoremap <silent> # :<C-U>
             \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 " ======================================================================
+" Format file formation and tags jumping/searching
+" ======================================================================
+function! FormatNormalFile()
+    let l:winview = winsaveview()
+    :norm gg=G
+    call winrestview(l:winview)
+endfunction
+
+function! SetNormalFileOptions() 
+    let g:qgrep_files="--include='*'"
+
+    " Format whole file
+    nnoremap <leader>f call FormatNormalFile()
+endfunction
+
+" ======================================================================
 " Qgrep: a custom grep tool
 " ======================================================================
 " run external grep, :grep is very slow with YCM
-function! Qgrep(str, mark)
-    let l:cmd = "grep -rnFI --include='*.[ch]' --include='*.cc' --include='*.cpp'" . " " . a:str . " ."
+" Which files we are insterested in?
+let g:qgrep_files="--include='*'"
+
+autocmd filetype * call SetNormalFileOptions()
+
+function! QuickGrepAndMark(str, mark)
+    let l:cmd = "grep -rnFI " . g:qgrep_files . " " . a:str . " ."
     echohl ErrorMsg
     echo l:cmd
     " create a global mark, so we can jump back
@@ -324,14 +344,12 @@ function! Qgrep(str, mark)
     endif
     :cexpr system(l:cmd)
 endfunction
-function! Qgrep1(str)
-    call Qgrep(a:str, "Z")
+
+function! QuickGrep(str)
+    call QuickGrepAndMark(a:str, "Z")
 endfunction
-command! -nargs=+ -complete=command Qgrep call Qgrep1(<q-args>)
-" nnoremap <leader>g :call Qgrep(expand('<cword>'), 'Z')<CR>
-" nnoremap <leader>Ga :call Qgrep(expand('<cword>'), 'A')<CR>
-" nnoremap <leader>Gb :call Qgrep(expand('<cword>'), 'B')<CR>
-" nnoremap <leader>Gc :call Qgrep(expand('<cword>'), 'C')<CR>
+command! -nargs=+ -complete=command Qgrep call QuickGrep(<q-args>)
+nnoremap <leader>gr :call QuickGrep(expand('<cword>'))<CR>
 
 " ======================================================================
 " vimgdb settings
@@ -398,16 +416,16 @@ Plugin 'fidian/hexmode'
 Plugin 'rhysd/vim-clang-format'
 
 if !has('win32')
-        " AutoTag will cause gvim crash in Windows
-        Plugin 'vim-scripts/AutoTag'
+    " AutoTag will cause gvim crash in Windows
+    Plugin 'vim-scripts/AutoTag'
 
-        " starify may block vim in win32
-        Plugin 'mhinz/vim-startify'
+    " starify may block vim in win32
+    Plugin 'mhinz/vim-startify'
 
-        " check whether we can enable YCM
-        if has('python') && v:version > 703
-                Plugin 'Valloric/YouCompleteMe', {'pinned': 1}
-        endif
+    " check whether we can enable YCM
+    if has('python') && v:version > 703
+        Plugin 'Valloric/YouCompleteMe', {'pinned': 1}
+    endif
 endif
 
 call vundle#end()
@@ -439,11 +457,11 @@ imap <F4> <Esc>:NERDTreeToggle<cr>
 noremap <leader>c :NERDTreeFind<cr><c-w><c-p>
 
 if !has('win32')
-        " auto open NERDTree when start
-        autocmd VimEnter * NERDTree
-        wincmd w
-        " move cursor from NERDTree to file
-        autocmd VimEnter * wincmd w
+    " auto open NERDTree when start
+    autocmd VimEnter * NERDTree
+    wincmd w
+    " move cursor from NERDTree to file
+    autocmd VimEnter * wincmd w
 endif
 
 " Check if NERDTree is open or active
@@ -661,7 +679,18 @@ let g:startify_change_to_dir          = 0
 " ======================================================================
 " vim-go
 " ======================================================================
-autocmd FileType go noremap <buffer> <leader>f :GoFmt<CR>
+function! SetGolangOptions()
+    " Only grep *.go files
+    let g:qgrep_files = "--include='*.go'"
+
+    " Use vim-go format && find referrers function
+    noremap <buffer> <leader>f :GoFmt<CR>
+    noremap <buffer> <leader>r ::GoReferrers<CR>
+
+    " <leader>t remains the same to use cscope
+endfunction
+
+autocmd FileType go call SetGolangOptions()
 
 " ======================================================================
 " vim-markdown && vim-flavored-markdown
@@ -686,32 +715,32 @@ noremap <F2> :TagbarToggle<CR>
 inoremap <F2> <ESC>:TagbarToggle<CR>
 
 let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
+            \ 'ctagstype' : 'go',
+            \ 'kinds'     : [
+            \ 'p:package',
+            \ 'i:imports:1',
+            \ 'c:constants',
+            \ 'v:variables',
+            \ 't:types',
+            \ 'n:interfaces',
+            \ 'w:fields',
+            \ 'e:embedded',
+            \ 'm:methods',
+            \ 'r:constructor',
+            \ 'f:functions'
+            \ ],
+            \ 'sro' : '.',
+            \ 'kind2scope' : {
+            \ 't' : 'ctype',
+            \ 'n' : 'ntype'
+            \ },
+            \ 'scope2kind' : {
+            \ 'ctype' : 't',
+            \ 'ntype' : 'n'
+            \ },
+            \ 'ctagsbin'  : 'gotags',
+            \ 'ctagsargs' : '-sort -silent'
+            \ }
 
 " ======================================================================
 " altercation/vim-colors-solarized
@@ -736,4 +765,15 @@ set background=dark
 " rhysd/vim-clang-format
 " ======================================================================
 let g:clang_format#code_style = "google"
-noremap <leader>f :ClangFormat<CR>
+function! SetClangOptions()
+    " Only grep c && c++ files
+    let g:qgrep_files = "--include='*.[ch]' --include='*.cc' --include='*.cpp'"
+
+    " Use clang-format format function
+    noremap <leader>f :ClangFormat<CR>
+
+    " <leader>r remains the same to use cscope
+    " <leader>t remains the same to use cscope
+endfunction
+
+autocmd FileType c,cpp,h,hpp call SetClangOptions()
